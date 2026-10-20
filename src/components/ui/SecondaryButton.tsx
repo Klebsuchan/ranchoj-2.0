@@ -1,0 +1,30 @@
+import React from 'react';
+
+export interface SecondaryButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+  fullWidth?: boolean;
+}
+
+export const SecondaryButton: React.FC<SecondaryButtonProps> = ({
+  children,
+  icon,
+  fullWidth = true,
+  className = '',
+  disabled,
+  ...rest
+}) => {
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      className={`${
+        fullWidth ? 'w-full' : ''
+      } min-h-[52px] px-5 rounded-pill bg-surface hover:bg-field text-ink border border-slate-200 font-semibold text-[15px] whitespace-nowrap flex items-center justify-center gap-2 active:scale-[0.98] transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/40 disabled:opacity-45 disabled:pointer-events-none ${className}`}
+      {...rest}
+    >
+      {icon && <span className="shrink-0">{icon}</span>}
+      <span>{children}</span>
+    </button>
+  );
+};

@@ -1,0 +1,10 @@
+{
+  "name": "Remix Rancho 2 ",
+  "description": "Compare ofertas e encartes de supermercados hoje em tempo real, monte sua lista de rancho pelo menor preço e economize até 30% no mês.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

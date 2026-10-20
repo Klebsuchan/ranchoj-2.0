@@ -1,0 +1,21 @@
+{
+  "name": "RanchoJá – Ofertas de Supermercado Hoje e Lista de Rancho",
+  "short_name": "RanchoJá",
+  "description": "Compare ofertas e encartes de supermercados em tempo real perto de você. Monte sua lista de compras do mês e economize até 30%.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF8F5",
+  "theme_color": "#EA1D2C",
+  "lang": "pt-BR",
+  "categories": ["shopping", "food", "finance", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

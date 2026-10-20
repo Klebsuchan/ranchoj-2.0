@@ -1,0 +1,6 @@
+{
+  "summary":  "Plano de implementação completo do Redesign RanchoJá 2.0 (Fases 1 a 12), cobrindo o Design System @theme no Tailwind v4, os 22 componentes base de UI, a arquitetura de coluna única mobile-first (448px) estilo iFood e o mapeamento de estado e interações das 7 telas sem alterar lógica de negócio ou backend.",
+  "updatedAt":  "2026-10-20T13:04:55.340030978Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

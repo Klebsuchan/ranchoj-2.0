@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cores */
+  --color-canvas: #f8f9fa;          /* fundo global */
+  --color-surface: #ffffff;         /* cards */
+  --color-ink: #263238;             /* texto principal */
+  --color-ink-soft: #546e7a;        /* texto secundário */
+  --color-ink-muted: #90a4ae;       /* metadados/disabled */
+  --color-brand: #ea1d2c;           /* vermelho iFood — CTAs, aba ativa, preço destaque */
+  --color-brand-hover: #c81b25;
+  --color-brand-soft: #fdecee;      /* fundo de badge/área de marca */
+  --color-save: #00a86b;            /* economia / melhor preço */
+  --color-save-soft: #e6f6ee;
+  --color-warn: #f5a623;            /* atenção leve */
+  --color-warn-soft: #fef4e3;
+  --color-danger: #e5484d;          /* orçamento estourado */
+  --color-danger-soft: #fdeaea;
+  --color-field: #f1f3f5;           /* inputs e busca sem borda */
+
+  /* Raios */
+  --radius-card: 1.25rem;   /* 20px — cards */
+  --radius-field: 1rem;     /* 16px — inputs */
+  --radius-pill: 9999px;    /* botões e chips */
+
+  /* Sombras (só 3 níveis no app inteiro) */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-float: 0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-nav: 0 -1px 0 rgba(0, 0, 0, 0.04);
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Fonte */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    height: 100%;
+    overscroll-behavior-y: none;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-height: 100dvh;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    min-height: 100%;
+    min-height: 100dvh;
+    background-color: var(--color-canvas);
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+    position: relative;
+  }
+
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 640px) {
+  input[type="text"],
+  input[type="number"],
+  input[type="search"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
