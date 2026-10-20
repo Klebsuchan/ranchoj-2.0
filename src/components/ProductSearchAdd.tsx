@@ -13,12 +13,15 @@ interface ProductSearchAddProps {
 }
 
 const QUICK_SUGGESTIONS = [
+  'Doritos',
+  'Salgadinho',
+  'Pizza Calabresa',
+  'Bolacha Recheada',
+  'Coca-Cola 2L',
+  'Guaraná Fruki',
+  'Arroz Parboilizado',
+  'Feijão Preto',
   'Energético Monster',
-  'Sabão OMO 4kg',
-  'Azeite de Oliva',
-  'Ovos 30 un',
-  'Café Moído 500g',
-  'Queijo Mussarela',
 ];
 
 export const ProductSearchAdd: React.FC<ProductSearchAddProps> = ({

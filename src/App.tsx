@@ -534,36 +534,50 @@ export default function App() {
       if (!res.ok) throw new Error('Erro ao carregar dados de promoções.');
       const data = await res.json();
       if (data.items && Array.isArray(data.items) && data.items.length > 0) {
-        let finalItems: PromotionItem[] = data.items;
+        const liveItems: PromotionItem[] = data.items;
         const defaultCat = getDefaultPromotionsCatalogue(city);
 
-        const hasMonster = finalItems.some((it: PromotionItem) => /monster/i.test(it.name));
-        if (!hasMonster) {
-          const fallbackMonster = defaultCat.find((i) => i.id === 'pf-energetico-monster-473ml');
-          if (fallbackMonster) finalItems = [fallbackMonster, ...finalItems];
+        // Merge live items with the complete supermarket catalogue so NO product is ever excluded
+        const mergedMap = new Map<string, PromotionItem>();
+
+        // 1. Seed with full complete catalogue (120+ items across all aisles and brands)
+        for (const baseItem of defaultCat) {
+          mergedMap.set(baseItem.id, baseItem);
         }
 
-        const hasSabonete = finalItems.some((it: PromotionItem) => /sabonete/i.test(it.name));
-        if (!hasSabonete) {
-          const fallbackSabonete = defaultCat.find((i) => i.id === 'pf-sabonete-barra-90g');
-          if (fallbackSabonete) finalItems = [fallbackSabonete, ...finalItems];
-        } else {
-          // Ensure Stock Center R$ 2,19 verified flyer price is accurate on Sabonete
-          finalItems = finalItems.map((it) => {
-            if (/sabonete/i.test(it.name)) {
-              const fallbackSab = defaultCat.find((i) => i.id === 'pf-sabonete-barra-90g');
-              return fallbackSab || it;
+        // 2. Overlay live deals without losing any catalogue items
+        for (const liveItem of liveItems) {
+          // Keep verified Stock Center R$ 2,19 sabonete and Monster R$ 7,99 intact
+          if (/sabonete/i.test(liveItem.name)) {
+            const fallbackSab = defaultCat.find((i) => i.id === 'pf-sabonete-barra-90g');
+            if (fallbackSab) {
+              mergedMap.set(fallbackSab.id, fallbackSab);
+              continue;
             }
-            return it;
-          });
+          }
+          if (/monster/i.test(liveItem.name)) {
+            const fallbackMonster = defaultCat.find((i) => i.id === 'pf-energetico-monster-473ml');
+            if (fallbackMonster) {
+              mergedMap.set(fallbackMonster.id, fallbackMonster);
+              continue;
+            }
+          }
+          if (/omo/i.test(liveItem.name) && /4\s*kg/i.test(liveItem.name)) {
+            const fallbackOmo = defaultCat.find((i) => i.id === 'pf-sabao-omo-4kg');
+            if (fallbackOmo) {
+              mergedMap.set(fallbackOmo.id, fallbackOmo);
+              continue;
+            }
+          }
+
+          if (mergedMap.has(liveItem.id)) {
+            mergedMap.set(liveItem.id, liveItem);
+          } else {
+            mergedMap.set(liveItem.id, liveItem);
+          }
         }
 
-        const hasOmo = finalItems.some((it: PromotionItem) => /omo/i.test(it.name));
-        if (!hasOmo) {
-          const fallbackOmo = defaultCat.find((i) => i.id === 'pf-sabao-omo-4kg');
-          if (fallbackOmo) finalItems = [fallbackOmo, ...finalItems];
-        }
-
+        const finalItems = Array.from(mergedMap.values());
         setPromotions(filterAndNormalizeActivePromotions(finalItems));
         setLastUpdated(data.updatedAt || new Date().toLocaleTimeString('pt-BR'));
         setSources(data.sources || []);

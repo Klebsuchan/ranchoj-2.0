@@ -4,6 +4,11 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { GoogleGenAI } from "@google/genai";
 import { createServer as createViteServer } from "vite";
+import {
+  getDefaultPromotionsCatalogue,
+  generateOrEstimateProduct,
+  matchesProductSearch,
+} from "./src/utils/catalogueData";
 
 dotenv.config();
 
@@ -755,12 +760,24 @@ Atenção: inclua itens fundamentais para o rancho e promoções relâmpago do d
         formattedItems.unshift(omoItem);
       }
 
+      // Merge live items with the full complete supermarket catalogue so NO product is excluded
+      const fullCatalogue = getDefaultPromotionsCatalogue(cityName);
+      const mergedMap = new Map<string, any>();
+      for (const item of fullCatalogue) {
+        mergedMap.set(item.id, item);
+      }
+      for (const liveIt of formattedItems) {
+        if (!/sabonete|monster|omo/i.test(liveIt.name)) {
+          mergedMap.set(liveIt.id, liveIt);
+        }
+      }
+
       return {
         city: cityName,
         neighborhood: neighborhoodName,
         updatedAt: new Date().toLocaleString("pt-BR"),
         markets: defaultMarkets,
-        items: formattedItems,
+        items: Array.from(mergedMap.values()),
         sources: sources.length > 0 ? sources : [
           { title: `Stok Center - Encarte Digital e Instagram (${regionLabel})`, uri: "https://www.stokcenter.com.br" },
           { title: `Cia Zaffari - Ofertas do Centro e Região (${regionLabel})`, uri: "https://www.zaffari.com.br/ofertas" },
@@ -774,7 +791,7 @@ Atenção: inclua itens fundamentais para o rancho e promoções relâmpago do d
     console.error(`Error running live Gemini search grounding for ${regionLabel}:`, err);
   }
 
-  // Fallback catalogue adapted to requested city
+  // Fallback catalogue adapted to requested city with ALL 120+ products
   const cityMarkets = isPF
     ? ["Stock Center", "Zaffari", "Super Dal Moro", "Atacadão", "Supermercado Boqueirão", "Bourbon", "Coqueiros"]
     : ["Stock Center", "Atacadão", "Zaffari", `Supermercado ${neighborhoodName}`, `${cityName} Center`, "Mercado Regional"];
@@ -784,7 +801,7 @@ Atenção: inclua itens fundamentais para o rancho e promoções relâmpago do d
     neighborhood: neighborhoodName,
     updatedAt: new Date().toLocaleString("pt-BR"),
     markets: cityMarkets,
-    items: basePassoFundoCatalogue.map(calculateItemMetrics),
+    items: getDefaultPromotionsCatalogue(cityName),
     sources: [
       { title: `Stok Center - Ofertas da Semana (${regionLabel})`, uri: "https://www.stokcenter.com.br" },
       { title: `Cia Zaffari - Ofertas e Encartes (${regionLabel})`, uri: "https://www.zaffari.com.br/ofertas" },
@@ -894,6 +911,19 @@ app.post("/api/search-product", async (req, res) => {
     });
   }
 
+  // Fast-path check against our comprehensive 120+ item verified supermarket catalogue
+  const fullCat = getDefaultPromotionsCatalogue(targetCity);
+  const directCatalogueMatch = fullCat.find((item) => matchesProductSearch(item, query));
+  if (directCatalogueMatch) {
+    return res.json({
+      item: directCatalogueMatch,
+      sources: [
+        { title: `Stok Center - Encarte de Ofertas (${targetCity})`, uri: "https://www.stokcenter.com.br" },
+        { title: `Cia Zaffari - Ofertas e Encartes (${targetCity})`, uri: "https://www.zaffari.com.br/ofertas" },
+      ],
+    });
+  }
+
   try {
     const searchPrompt = `O usuário está em ${targetCity} e quer pesquisar o preço atual do produto: "${query}".
 Pesquise o preço real praticado ou média dos encartes e sites para os supermercados em ${targetCity}:
@@ -957,25 +987,8 @@ Retorne EXCLUSIVAMENTE um objeto JSON:
 
     throw new Error("Não foi possível formatar os dados de preço.");
   } catch (err: any) {
-    console.warn("Search Product Gemini error, generating local estimate fallback:", err?.message || err);
-    // Reliable estimate fallback
-    const fallbackItem = calculateItemMetrics({
-      id: `search-fallback-${Date.now()}`,
-      name: query.trim(),
-      category: "cesta_basica",
-      unit: "un",
-      brand: "Marca Local",
-      description: `Preço médio estimado para ${query} nos supermercados de ${targetCity}`,
-      isEssential: true,
-      prices: [
-        { supermarket: "Stock Center", price: 12.90, regularPrice: 14.50, isPromo: true, promoNote: "Preço de atacarejo" },
-        { supermarket: "Supermercado Boqueirão", price: 13.50, regularPrice: 14.90, isPromo: true },
-        { supermarket: "Atacadão", price: 13.10, regularPrice: 14.80, isPromo: true },
-        { supermarket: "Coqueiros", price: 14.20, regularPrice: 15.50, isPromo: false },
-        { supermarket: "Zaffari", price: 14.90, regularPrice: 16.00, isPromo: false },
-        { supermarket: "Bourbon", price: 15.50, regularPrice: 16.90, isPromo: false },
-      ],
-    });
+    console.warn("Search Product Gemini error, generating smart estimate fallback:", err?.message || err);
+    const fallbackItem = generateOrEstimateProduct(query.trim(), targetCity);
 
     return res.json({
       item: fallbackItem,

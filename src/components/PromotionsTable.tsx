@@ -31,7 +31,11 @@ import {
   removePriceAlert,
   evaluatePriceAlerts,
 } from '../utils/priceAlerts';
-import { normalizeSearchText, generateOrEstimateProduct } from '../utils/catalogueData';
+import {
+  normalizeSearchText,
+  generateOrEstimateProduct,
+  matchesProductSearch,
+} from '../utils/catalogueData';
 import { CategoryChips } from './ui/CategoryChips';
 import { ToggleChip } from './ui/ToggleChip';
 import { SectionTitle } from './ui/SectionTitle';
@@ -205,52 +209,61 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
     ];
   }, [items]);
 
-  // Filtragem principal
+  // Filtragem principal com busca inteligente por sinônimos e múltiplos termos
   const filteredItems = useMemo(() => {
-    const normQuery = normalizeSearchText(searchQuery);
+    const hasSearch = Boolean(searchQuery.trim());
 
-    return items
-      .filter((item) => {
-        if (selectedCategory === 'hortifruti' && item.category !== 'hortifruti') return false;
-        if (selectedCategory === 'carnes_proteinas' && item.category !== 'carnes_proteinas') return false;
-        if (
-          selectedCategory === 'outros_geral' &&
-          (item.category === 'hortifruti' || item.category === 'carnes_proteinas')
-        ) {
-          return false;
-        }
-        if (onlyEssentials && !item.isEssential) return false;
-        if (priceUnder10 && item.lowestPrice > 10) return false;
-        if (onlyPromos && !item.prices.some((p) => p.isPromo)) return false;
-        if (onlyFavorites && !priceAlerts[item.id]) return false;
-        if (
-          selectedSpecificMarket !== 'all' &&
-          !item.prices.some(
-            (p) => p.supermarket.toLowerCase() === selectedSpecificMarket.toLowerCase()
-          )
-        ) {
-          return false;
-        }
-        if (onlyNearby && nearbyMarketNames.size > 0) {
-          const hasNearby = item.prices.some((p) => {
-            const mktLower = p.supermarket.toLowerCase();
-            return Array.from(nearbyMarketNames).some(
-              (nm) => mktLower.includes(nm) || nm.includes(mktLower)
-            );
-          });
-          if (!hasNearby) return false;
-        }
-        if (normQuery) {
-          const haystack = normalizeSearchText(
-            `${item.name} ${item.brand || ''} ${item.cheapestMarket} ${
-              categoryLabels[item.category] || ''
-            }`
-          );
-          if (!haystack.includes(normQuery)) return false;
-        }
-        return true;
-      })
-      .sort((a, b) => a.lowestPrice - b.lowestPrice);
+    const runFilter = (ignoreCategory: boolean) =>
+      items
+        .filter((item) => {
+          if (!ignoreCategory) {
+            if (selectedCategory === 'hortifruti' && item.category !== 'hortifruti') return false;
+            if (selectedCategory === 'carnes_proteinas' && item.category !== 'carnes_proteinas')
+              return false;
+            if (
+              selectedCategory === 'outros_geral' &&
+              (item.category === 'hortifruti' || item.category === 'carnes_proteinas')
+            ) {
+              return false;
+            }
+          }
+          if (onlyEssentials && !item.isEssential) return false;
+          if (priceUnder10 && item.lowestPrice > 10) return false;
+          if (onlyPromos && !item.prices.some((p) => p.isPromo)) return false;
+          if (onlyFavorites && !priceAlerts[item.id]) return false;
+          if (
+            selectedSpecificMarket !== 'all' &&
+            !item.prices.some(
+              (p) => p.supermarket.toLowerCase() === selectedSpecificMarket.toLowerCase()
+            )
+          ) {
+            return false;
+          }
+          if (onlyNearby && nearbyMarketNames.size > 0) {
+            const hasNearby = item.prices.some((p) => {
+              const mktLower = p.supermarket.toLowerCase();
+              return Array.from(nearbyMarketNames).some(
+                (nm) => mktLower.includes(nm) || nm.includes(mktLower)
+              );
+            });
+            if (!hasNearby) return false;
+          }
+          if (hasSearch) {
+            const extraCategoryText = categoryLabels[item.category] || '';
+            const matched =
+              matchesProductSearch(item, searchQuery) ||
+              normalizeSearchText(extraCategoryText).includes(normalizeSearchText(searchQuery));
+            if (!matched) return false;
+          }
+          return true;
+        })
+        .sort((a, b) => a.lowestPrice - b.lowestPrice);
+
+    const primaryResults = runFilter(false);
+    if (hasSearch && primaryResults.length === 0 && selectedCategory !== 'all') {
+      return runFilter(true);
+    }
+    return primaryResults;
   }, [
     items,
     searchQuery,
@@ -400,10 +413,14 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
       {/* 3. Lista vertical de ofertas */}
       <section className="space-y-3">
         <SectionTitle
-          title="Catálogo completo da semana"
+          title={
+            searchQuery.trim()
+              ? `Resultados para "${searchQuery.trim()}"`
+              : 'Catálogo completo de todos os mercados'
+          }
           subtitle={`${filteredItems.length} ${
-            filteredItems.length === 1 ? 'produto verificado' : 'produtos verificados'
-          } · Atualiza automaticamente ao vencer`}
+            filteredItems.length === 1 ? 'produto encontrado' : 'produtos encontrados'
+          } · Todos os corredores e promoções ativas`}
           actionLabel={
             selectedCategory !== 'all' ||
             onlyEssentials ||
