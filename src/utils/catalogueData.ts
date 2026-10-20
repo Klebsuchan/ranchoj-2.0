@@ -88,6 +88,8 @@ export function normalizeSearchText(text: string): string {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
+    .replace(/[-/’'&+,().!?:;]/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -2822,6 +2824,1179 @@ export const BASE_CATALOGUE_RAW = [
     isEssential: false,
     prices: buildMarketPrices(12.90, { promoNote: 'Oferta Cuidado Pet' }),
   },
+
+  // ===========================================================================
+  // 19. AÇOUGUE COMPLETO, CHURRASCO GAÚCHO, MIÚDOS E PEIXARIA
+  // ===========================================================================
+  {
+    id: 'pf-maminha-bovina-kg',
+    name: 'Maminha Bovina Peça ou Fatiada para Churrasco e Assado (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Friboi / Best Beef / Marfrig / Açougue Local',
+    description: 'Corte bovino super macio e suculento para churrasco na grelha, espeto ou forno',
+    isEssential: false,
+    prices: buildMarketPrices(42.90, { promoNote: 'Especial Churrasco Gaúcho' }),
+  },
+  {
+    id: 'pf-chuleta-bife-ancho-bovino-kg',
+    name: 'Chuleta Bovina / Bife Ancho / Entrecot para Grelha e Bife (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Best Beef / Montana / Açougue Boqueirão e Zaffari',
+    description: 'Chuleta gaúcha tradicional com osso e entrecot marmorizado para chapa ou brasa',
+    isEssential: false,
+    prices: buildMarketPrices(34.90, { cheapestAt: 'Supermercado Boqueirão', promoNote: 'Quinta da Carne no Açougue' }),
+  },
+  {
+    id: 'pf-cupim-costela-ripa-matambre-kg',
+    name: 'Cupim Bovino / Costela Ripa / Matambre para Assar (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Friboi / Minerva / Frigorífico Regional',
+    description: 'Cortes tradicionais para assado longo no espeto, bafo ou matambre recheado',
+    isEssential: false,
+    prices: buildMarketPrices(31.90, { promoNote: 'Oferta Fim de Semana do Assado' }),
+  },
+  {
+    id: 'pf-musculo-ossobuco-paleta-panela-kg',
+    name: 'Músculo Bovino / Ossobuco / Paleta e Agulha para Panela e Sopa (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Açougue Local / Friboi / Marfrig',
+    description: 'Carne de panela macia e nutritiva ideal para ensopados, caldo, sopa e feijão',
+    isEssential: true,
+    prices: buildMarketPrices(22.90, { promoNote: 'Oferta Carne de Panela Econômica' }),
+  },
+  {
+    id: 'pf-file-mignon-bovino-kg',
+    name: 'Filé Mignon Bovino Limpo sem Cordão (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Best Beef / Zaffari / Friboi Reserva',
+    description: 'Corte bovino mais macio, ideal para medalhão, estrogonofe nobre e parmegiana',
+    isEssential: false,
+    prices: buildMarketPrices(68.90, { cheapestAt: 'Zaffari', promoNote: 'Seleção Cortes Nobres' }),
+  },
+  {
+    id: 'pf-frango-inteiro-congelado-resfriado-kg',
+    name: 'Frango Inteiro Congelado / Resfriado para Assar (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Sadia / Seara / Aurora / Nat',
+    description: 'Frango inteiro econômico para assar recheado no domingo ou fazer caldo',
+    isEssential: true,
+    prices: buildMarketPrices(8.99, { promoNote: 'Super Preço Frango Inteiro' }),
+  },
+  {
+    id: 'pf-coracaozinho-frango-churrasco-kg',
+    name: 'Coraçãozinho de Frango para Churrasco e Espetinho (Pacote 1kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: '1kg',
+    brand: 'Seara / Sadia / Aurora / Lar',
+    description: 'Coração de frango selecionado indispensável no churrasco e xis coração gaúcho',
+    isEssential: false,
+    isDailyHighlight: true,
+    prices: buildMarketPrices(26.90, { promoNote: 'Oferta Especial Churrasco' }),
+  },
+  {
+    id: 'pf-moela-figado-frango-bovino-kg',
+    name: 'Moela de Frango / Fígado de Frango e Fígado Bovino em Iscas (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Aurora / Seara / Sadia / Açougue Local',
+    description: 'Miúdos selecionados ricos em ferro e proteína com preço super econômico',
+    isEssential: true,
+    prices: buildMarketPrices(11.49, { promoNote: 'Economia no Açougue' }),
+  },
+  {
+    id: 'pf-pernil-lombo-suino-kg',
+    name: 'Pernil Suíno / Lombo Suíno Temperado ou In Natura (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Aurora / Dália / Seara / Alibem',
+    description: 'Cortes suínos magros e suculentos para assar no forno, airfryer ou grelha',
+    isEssential: true,
+    prices: buildMarketPrices(17.90, { promoNote: 'Festival de Carne Suína' }),
+  },
+  {
+    id: 'pf-panceta-barriga-suina-torresmo-kg',
+    name: 'Panceta / Barriga Suína para Torresmo e Churrasco (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Aurora / Dália / Seara Gourmet',
+    description: 'Barriga suína carnuda ideal para pururuca crocante, torresmo na airfryer e brasa',
+    isEssential: false,
+    prices: buildMarketPrices(23.90),
+  },
+  {
+    id: 'pf-salsichao-branco-bock-morcela-kg',
+    name: 'Salsichão Branco Alemão / Salsicha Bock / Morcela Preta e Branca (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Dália / Ouro do Sul / Majer / Zimmer',
+    description: 'Embutidos coloniais gaúchos tradicionais para churrasco, aperitivo e feijoada',
+    isEssential: false,
+    prices: buildMarketPrices(24.90, { promoNote: 'Tradição Colonial Gaúcha' }),
+  },
+  {
+    id: 'pf-carne-ovelha-cordeiro-costela-paleta-kg',
+    name: 'Costela e Paleta de Ovelha / Cordeiro Gaúcho (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Cabanha Gaúcha / Best Beef / Frigorífico Silva',
+    description: 'Cortes ovinos selecionados da campanha gaúcha para assado especial',
+    isEssential: false,
+    prices: buildMarketPrices(44.90, { cheapestAt: 'Zaffari' }),
+  },
+  {
+    id: 'pf-file-salmao-fresco-congelado-kg',
+    name: 'Filé de Salmão Chileno com Pele Fresco / Congelado (kg)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'kg',
+    brand: 'Peixaria Zaffari / Seara / Komdelli',
+    description: 'Filé de salmão nobre rico em ômega-3 para grelhar, forno ou sashimi',
+    isEssential: false,
+    prices: buildMarketPrices(69.90, { cheapestAt: 'Zaffari', promoNote: 'Oferta Peixaria' }),
+  },
+  {
+    id: 'pf-file-merluza-camarao-bacalhau-500g',
+    name: 'Filé de Merluza (800g) / Camarão Descascado (400g) / Bacalhau Desfiado',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: 'pct',
+    brand: 'Opergel / Costa Sul / Seara / Gomes da Costa',
+    description: 'Pescados e frutos do mar congelados práticos para almoço de sexta-feira e festas',
+    isEssential: false,
+    prices: buildMarketPrices(25.90, { promoNote: 'Especial Pescados' }),
+  },
+
+  // ===========================================================================
+  // 20. FRIOS, QUEIJOS COLONIAIS, LATICÍNIOS DE GELADEIRA E MASSAS FRESCAS
+  // ===========================================================================
+  {
+    id: 'pf-queijo-colonial-gaucho-kg',
+    name: 'Queijo Colonial Gaúcho Tradicional / Com Orégano ou Vinho (kg)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: 'kg',
+    brand: 'Laticínios Regionais / Santa Clara / Da Colônia',
+    description: 'Queijo colonial macio de produção regional para café colonial, chapa e polenta',
+    isEssential: false,
+    prices: buildMarketPrices(39.90, { cheapestAt: 'Supermercado Boqueirão', promoNote: 'Direto da Colônia' }),
+  },
+  {
+    id: 'pf-queijo-minas-frescal-ricota-un',
+    name: 'Queijo Minas Frescal Light / Ricota Fresca e Cottage (300g / 400g)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: 'un',
+    brand: 'Santa Clara / Tirolez / Balkis / Piá',
+    description: 'Queijos brancos leves de baixa caloria ideais para sanduíches naturais e dieta',
+    isEssential: false,
+    prices: buildMarketPrices(11.90),
+  },
+  {
+    id: 'pf-queijo-provolone-gorgonzola-gouda-kg',
+    name: 'Queijo Provolone Defumado / Gorgonzola / Gouda / Brie (Fração 200g / kg)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: 'un',
+    brand: 'Santa Clara / Tirolez / Quatá / Président',
+    description: 'Queijos especiais para tábuas de frios, molho 4 queijos, risotos e vinhos',
+    isEssential: false,
+    prices: buildMarketPrices(14.90, { cheapestAt: 'Zaffari', promoNote: 'Festival de Queijos e Vinhos' }),
+  },
+  {
+    id: 'pf-peito-peru-copa-lombo-apresuntado-kg',
+    name: 'Peito de Peru Defumado / Copa Fatiada / Lombo Canadense / Apresuntado (200g)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: '200g',
+    brand: 'Sadia / Seara / Perdigão / Ceratti',
+    description: 'Frios fatiados selecionados para sanduíches, lanches rápidos e tábuas de petiscos',
+    isEssential: false,
+    prices: buildMarketPrices(8.90),
+  },
+  {
+    id: 'pf-nata-pote-300g',
+    name: 'Nata Fresca Tradicional Gaúcha Pote (300g)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: '300g',
+    brand: 'Santa Clara / Piá / Frimesa / Elegê',
+    description: 'Nata cremosa indispensável para passar no pão com chimia ou fazer bolachinhas e tortas',
+    isEssential: true,
+    prices: buildMarketPrices(7.49, { promoNote: 'Clássico do Café Gaúcho' }),
+  },
+  {
+    id: 'pf-leite-fermentado-yakult-chamyto-6un',
+    name: 'Leite Fermentado com Lactobacilos Vivos Pack (6 un / 450g)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: 'pack',
+    brand: 'Yakult / Chamyto Nestlé / Actimel / Bob Esponja Elegê',
+    description: 'Leite fermentado gelado favorito das crianças para o café da manhã e lancheira',
+    isEssential: false,
+    prices: buildMarketPrices(6.49, { promoNote: 'Oferta Lancheira Escolar' }),
+  },
+  {
+    id: 'pf-achocolatado-pronto-toddynho-200ml',
+    name: 'Bebida Láctea Achocolatado Pronto Caixinha (Toddynho / Nescau 200ml)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: '200ml',
+    brand: 'Toddynho / Nescau Prontinho / Italac / Pirakids',
+    description: 'Achocolatado pronto para beber com canudinho para lanche rápido',
+    isEssential: false,
+    prices: buildMarketPrices(2.39, { promoNote: 'Leve 6 Pague Menos' }),
+  },
+  {
+    id: 'pf-iogurte-grego-natural-integral-170g',
+    name: 'Iogurte Grego Tradicional / Frutas Vermelhas e Iogurte Natural Integral (170g)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: '170g',
+    brand: 'Vigor Grego / Nestlé / Danone / Batavo / Piá',
+    description: 'Iogurte natural integral 2 ingredientes e iogurte grego ultra cremoso',
+    isEssential: false,
+    prices: buildMarketPrices(3.29),
+  },
+  {
+    id: 'pf-chantilly-spray-creme-culinario-250g',
+    name: 'Chantilly Spray Pronto / Mistura para Chantilly Bate Chantilly (200ml / 1L)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: 'un',
+    brand: 'Fleischmann / Amélia / Vigor / Président',
+    description: 'Chantilly cremoso para morangos, café especial, tortas e confeitaria',
+    isEssential: false,
+    prices: buildMarketPrices(13.90),
+  },
+  {
+    id: 'pf-massa-pastel-rolo-disco-500g',
+    name: 'Massa para Pastel em Rolo / Disco Grande e Massa de Pizza Fresca (500g)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: '500g',
+    brand: 'Massa Leve / Da Colônia / Mezzani / Romanha',
+    description: 'Massa fresca crocante para pastel frito na hora, lasanha ou pastel de forno',
+    isEssential: true,
+    prices: buildMarketPrices(6.29, { promoNote: 'Noite do Pastel em Casa' }),
+  },
+
+  // ===========================================================================
+  // 21. PADARIA COMPLETA, SALGADOS, CONFEITARIA E CAFÉ EM CÁPSULA
+  // ===========================================================================
+  {
+    id: 'pf-pao-milho-sovado-centeio-500g',
+    name: 'Pão de Milho Caseiro / Pão Sovado / Pão de Centeio e Integral (500g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '500g',
+    brand: 'Padaria Local / Bauducco / Wickbold / Plusvita',
+    description: 'Pães caseiros fofinhos de milho, sovado e grãos para o café da tarde',
+    isEssential: true,
+    prices: buildMarketPrices(7.90),
+  },
+  {
+    id: 'pf-tortilha-rap10-pao-sirio-300g',
+    name: 'Tortilha de Trigo Rap10 (Tradicional / Integral / Fit) e Pão Sírio (300g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '300g',
+    brand: 'Rap10 Pullman / Wickbold / Panifício Local',
+    description: 'Massa fina prática para wraps, lanches de frigideira, quesadillas e pizza rápida',
+    isEssential: false,
+    prices: buildMarketPrices(8.49, { promoNote: 'Lanche Rápido e Fit' }),
+  },
+  {
+    id: 'pf-bisnaguinha-seven-boys-panco-300g',
+    name: 'Pão Bisnaguinha Tradicional / Integral Leite (Pacote 300g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '300g',
+    brand: 'Seven Boys / Panco / Pullman / Visconti',
+    description: 'Bisnaguinha macia adorada pelas crianças com requeijão, manteiga ou presunto',
+    isEssential: false,
+    prices: buildMarketPrices(5.99),
+  },
+  {
+    id: 'pf-cueca-virada-grostoli-sonho-padaria-300g',
+    name: 'Cueca Virada (Grostoli) com Açúcar e Canela / Sonho de Padaria (Bandeja)',
+    category: 'outros' as ProductCategory,
+    unit: 'bandeja',
+    brand: 'Padaria Artesanal Zaffari / Boqueirão / Dal Moro',
+    description: 'Grostoli gaúcho fresquinho e sonhos recheados de doce de leite ou creme',
+    isEssential: false,
+    prices: buildMarketPrices(8.90, { cheapestAt: 'Supermercado Boqueirão', promoNote: 'Feito Hoje na Padaria' }),
+  },
+  {
+    id: 'pf-bolinho-bauducco-ana-maria-40g',
+    name: 'Bolinho Recheado Bauducco Duo / Ana Maria / Bebezinho (40g / Kit)',
+    category: 'outros' as ProductCategory,
+    unit: 'un',
+    brand: 'Bauducco / Pullman Ana Maria / Belma',
+    description: 'Bolinho individual macio recheado de chocolate ou baunilha para lanche',
+    isEssential: false,
+    prices: buildMarketPrices(2.29),
+  },
+  {
+    id: 'pf-panetone-chocotone-bauducco-400g',
+    name: 'Panetone de Frutas / Chocotone Gotas de Chocolate e Trufado (400g)',
+    category: 'outros' as ProductCategory,
+    unit: '400g',
+    brand: 'Bauducco / Visconti / Tommy / Parati / Zaffari',
+    description: 'Panetone tradicional e chocotone macio com gotas de chocolate ao leite',
+    isEssential: false,
+    prices: buildMarketPrices(18.90, { promoNote: 'Oferta Especial Confeitaria' }),
+  },
+  {
+    id: 'pf-cafe-capsula-dolce-gusto-nespresso-10un',
+    name: 'Café em Cápsulas Dolce Gusto / Nespresso / Três Corações (Caixa 10 un)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: 'caixa',
+    brand: 'Nescafé Dolce Gusto / L’OR / Pilão / 3 Corações / Starbucks',
+    description: 'Cápsulas de café espresso, lungo, au lait, cappuccino e chococino',
+    isEssential: false,
+    prices: buildMarketPrices(16.90, { cheapestAt: 'Atacadão', promoNote: 'Festival de Cafés e Cápsulas' }),
+  },
+  {
+    id: 'pf-cappuccino-po-3coracoes-200g',
+    name: 'Cappuccino em Pó Classic / Chocolate / Canela / Zero Pote (200g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '200g',
+    brand: '3 Corações / Melitta / Nescafé',
+    description: 'Cappuccino cremoso instantâneo perfeito para aquecer os dias frios',
+    isEssential: false,
+    prices: buildMarketPrices(11.90),
+  },
+  {
+    id: 'pf-adocante-liquido-zero-cal-stevia-100ml',
+    name: 'Adoçante Líquido ou em Pó Tradicional / Sucralose / Stevia (100ml)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '100ml',
+    brand: 'Zero-Cal / Linea / Adocyl / Finn / Dona Benta',
+    description: 'Adoçante dietético zero calorias para café, chás, sucos e sobremesas',
+    isEssential: true,
+    prices: buildMarketPrices(5.49),
+  },
+  {
+    id: 'pf-leite-de-coco-200ml',
+    name: 'Leite de Coco Tradicional Garrafinha (200ml / 500ml)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '200ml',
+    brand: 'Sococo / Menina / Ducoco / Copra',
+    description: 'Leite de coco culinário para bolos, moquecas, doces, canjica e strogonoff',
+    isEssential: false,
+    prices: buildMarketPrices(3.49),
+  },
+  {
+    id: 'pf-chocolate-po-culinario-50-cacau-200g',
+    name: 'Chocolate em Pó 50% / 70% Cacau Solúvel para Confeitaria (200g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '200g',
+    brand: 'Nestlé Dois Frades / Melken Harald / Garoto / Dr. Oetker',
+    description: 'Chocolate do Padre 50% cacau verdadeiro para brigadeiro, bolos e caldas',
+    isEssential: false,
+    prices: buildMarketPrices(11.49, { promoNote: 'Oferta Confeitaria' }),
+  },
+  {
+    id: 'pf-pudim-po-maria-mole-gelatina-incolor',
+    name: 'Pó para Pudim / Maria-Mole / Flan e Gelatina Sem Sabor Incolor (50g)',
+    category: 'outros' as ProductCategory,
+    unit: 'un',
+    brand: 'Dr. Oetker / Royal / Apti / Sol',
+    description: 'Sobremesas práticas em pó de baunilha, chocolate, coco e gelatina incolor',
+    isEssential: false,
+    prices: buildMarketPrices(2.49),
+  },
+  {
+    id: 'pf-uva-passa-ameixa-seca-frutas-cristalizadas-150g',
+    name: 'Uva-Passa Preta Sem Semente / Ameixa Seca / Frutas Cristalizadas (150g)',
+    category: 'outros' as ProductCategory,
+    unit: '150g',
+    brand: 'La Violetera / Vale Fértil / Yoki / Fritz & Frida',
+    description: 'Frutas secas selecionadas para arroz, farofas, bolos, sagu e lanches saudáveis',
+    isEssential: false,
+    prices: buildMarketPrices(5.99),
+  },
+
+  // ===========================================================================
+  // 22. MERCEARIA SALGADA, MASSAS ESPECIAIS, SOPAS, FARINHAS E CONSERVAS
+  // ===========================================================================
+  {
+    id: 'pf-capeletti-agnoline-sopa-400g',
+    name: 'Capeletti / Agnoline de Frango ou Carne para Sopa Gaúcha (400g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '400g',
+    brand: 'Romanha / Mezzani / Massa Leve / Orquídea / Germani',
+    description: 'Agnoline e capeletti recheados tradicionais da Serra e Passo Fundo para sopa',
+    isEssential: true,
+    prices: buildMarketPrices(8.90, { promoNote: 'Tradição Sopa de Agnoline' }),
+  },
+  {
+    id: 'pf-massa-lasanha-nhoque-yakisoba-500g',
+    name: 'Massa para Lasanha Direto ao Forno / Nhoque / Massa para Yakisoba (500g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '500g',
+    brand: 'Isabela / Orquídea / Barilla / Renata / Paganini',
+    description: 'Massa em placas para lasanha caseira, nhoque de batata e macarrão oriental',
+    isEssential: false,
+    prices: buildMarketPrices(6.49),
+  },
+  {
+    id: 'pf-sopa-instantanea-creme-cebola-65g',
+    name: 'Sopa / Canja Instantânea + Creme de Cebola para Temperar (65g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '65g',
+    brand: 'Maggi / Knorr / Vono / Kitano / Apti',
+    description: 'Sopas rápidas de legumes/galinha com macarrão e creme de cebola para assados',
+    isEssential: true,
+    prices: buildMarketPrices(3.49, { promoNote: 'Oferta Sopas e Caldos' }),
+  },
+  {
+    id: 'pf-farinha-mandioca-torrada-crua-1kg',
+    name: 'Farinha de Mandioca Branca Crua / Torrada Fina Tipo 1 (1kg)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '1kg',
+    brand: 'Yoki / Fritz & Frida / Sinimbu / Zezé',
+    description: 'Farinha de mandioca pura para pirão, farofa caseira, feijão e churrasco',
+    isEssential: true,
+    prices: buildMarketPrices(5.29),
+  },
+  {
+    id: 'pf-farinha-de-rosca-panko-500g',
+    name: 'Farinha de Rosca Tradicional / Farinha Panko Crocante para Empanar (500g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '500g',
+    brand: 'Yoki / Orquídea / Kisabor / Padaria Local',
+    description: 'Farinha especial para empanar bife à milanesa, filé de peixe, frango e salgados',
+    isEssential: false,
+    prices: buildMarketPrices(4.49),
+  },
+  {
+    id: 'pf-chia-linhaca-quinoa-gergelim-200g',
+    name: 'Semente de Chia / Linhaça Dourada e Marrom / Quinoa em Grãos (200g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '200g',
+    brand: 'Mãe Terra / Jasmine / Vitalin / Fritz & Frida',
+    description: 'Grãos e sementes funcionais ricos em fibras e ômega-3 para iogurte, frutas e pães',
+    isEssential: false,
+    prices: buildMarketPrices(6.90, { promoNote: 'Corredor Saudáveis e Naturais' }),
+  },
+  {
+    id: 'pf-extrato-tomate-elefante-300g',
+    name: 'Extrato de Tomate Concentrado Pote / Lata (Elefante / Heinz 300g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '300g',
+    brand: 'Elefante / Heinz / Quero / Fugini / Oderich',
+    description: 'Extrato de tomate 100% concentrado para molhos encorpados, cachorro-quente e estrogonofe',
+    isEssential: true,
+    prices: buildMarketPrices(4.29, { promoNote: 'Oferta Extrato Elefante' }),
+  },
+  {
+    id: 'pf-molho-barbecue-salada-branco-350g',
+    name: 'Molho Barbecue Defumado / Molho para Salada / Molho Branco Pronto (350g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '350g',
+    brand: 'Heinz / Hellmann’s / Hemmer / Liza / Fugini',
+    description: 'Molhos especiais para costelinha barbecue, hambúrguer, saladas e massas',
+    isEssential: false,
+    prices: buildMarketPrices(6.99),
+  },
+  {
+    id: 'pf-champignon-cogumelo-conserva-100g',
+    name: 'Cogumelo Champignon Inteiro / Fatiado em Conserva para Estrogonofe (100g)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '100g',
+    brand: 'Hemmer / La Violetera / Vale Fértil / Fugini',
+    description: 'Champignon macio fatiado indispensável para estrogonofe de carne ou frango e pizzas',
+    isEssential: false,
+    prices: buildMarketPrices(5.99),
+  },
+  {
+    id: 'pf-seleta-legumes-dueto-feijoada-lata',
+    name: 'Seleta de Legumes / Dueto Milho e Ervilha / Feijoada e Salsicha Lata (Oderich)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: 'lata',
+    brand: 'Oderich / Quero / Fugini / Bordon',
+    description: 'Conservas práticas para maionese de domingo, arroz temperado e refeições rápidas',
+    isEssential: false,
+    prices: buildMarketPrices(3.99),
+  },
+
+  // ===========================================================================
+  // 23. DOCES, CHOCOLATES, BOMBONIERE, BALAS E SORVETERIA
+  // ===========================================================================
+  {
+    id: 'pf-chocolate-bis-lacta-100g',
+    name: 'Chocolate Bis Ao Leite / Bis Branco / Bis Xtra Lacta (Caixa 100g)',
+    category: 'outros' as ProductCategory,
+    unit: '100g',
+    brand: 'Bis / Lacta / Mondelēz',
+    description: 'Wafer crocante coberto com chocolate ao leite ou branco Bis',
+    isEssential: false,
+    prices: buildMarketPrices(4.99, { promoNote: 'Leve 3 Pague Menos no Bis' }),
+  },
+  {
+    id: 'pf-chocolate-kitkat-baton-trento-talento',
+    name: 'Chocolate KitKat (41,5g) / Trento / Baton Garoto / Talento (Unidade)',
+    category: 'outros' as ProductCategory,
+    unit: 'un',
+    brand: 'KitKat Nestlé / Trento Peccin / Garoto',
+    description: 'Chocolates individuais mais vendidos no caixa do mercado e bomboniere',
+    isEssential: false,
+    prices: buildMarketPrices(2.99, { promoNote: 'Oferta Bomboniere' }),
+  },
+  {
+    id: 'pf-bombom-sonho-valsa-ouro-branco-pacote',
+    name: 'Bombom Sonho de Valsa / Ouro Branco / Serenata de Amor (Pacote 1kg / Avulso)',
+    category: 'outros' as ProductCategory,
+    unit: 'pct',
+    brand: 'Lacta / Garoto / Neugebauer Amor Carioca',
+    description: 'Bombons clássicos recheados para sobremesas, pavês, festas e presentes',
+    isEssential: false,
+    prices: buildMarketPrices(44.90, { cheapestAt: 'Atacadão', promoNote: 'Pacote Econômico Atacado 1kg' }),
+  },
+  {
+    id: 'pf-confeitos-mms-bibs-amendoim-chocolate-140g',
+    name: 'Chocolate Confeitado M&M’s / Bib’s Neugebauer Amendoim e Ao Leite (140g)',
+    category: 'outros' as ProductCategory,
+    unit: '140g',
+    brand: 'Bib’s Neugebauer / M&M’s Mars / Disqueti Dori',
+    description: 'Drageados de chocolate ao leite e amendoim crocantes favoritos no RS',
+    isEssential: false,
+    prices: buildMarketPrices(5.49, { promoNote: 'Oferta Bib’s e M&M’s' }),
+  },
+  {
+    id: 'pf-pacoquinha-pe-de-moleque-rapadura-pote',
+    name: 'Paçoquinha Rolha / Pé de Moleque / Rapadura e Doce de Amendoim (Pote / Caixa)',
+    category: 'outros' as ProductCategory,
+    unit: 'pote',
+    brand: 'Paçoquita Santa Helena / Da Colônia / Dori / Yoki',
+    description: 'Doces tradicionais de amendoim, paçoca e rapadura colonial gaúcha',
+    isEssential: false,
+    prices: buildMarketPrices(8.90),
+  },
+  {
+    id: 'pf-bala-fini-gelatina-90g',
+    name: 'Balas de Gelatina Fini Dentaduras / Tubes / Beijos / Minhocas (Pacote 90g)',
+    category: 'outros' as ProductCategory,
+    unit: '90g',
+    brand: 'Fini / Gomets Dori / Haribo',
+    description: 'Balas de goma e gelatina Fini nos sabores favoritos das crianças e adultos',
+    isEssential: false,
+    prices: buildMarketPrices(4.79, { promoNote: 'Festival Fini e Bomboniere' }),
+  },
+  {
+    id: 'pf-chiclete-trident-halls-mentos-un',
+    name: 'Chiclete Trident Sem Açúcar / Bala Halls / Pastilha Mentos e Tic Tac (Unidade / Pack)',
+    category: 'outros' as ProductCategory,
+    unit: 'un',
+    brand: 'Trident / Halls / Mentos / Tic Tac / Babaloo',
+    description: 'Gomas de mascar, drops refrescantes de menta/cereja/extra forte no caixa do mercado',
+    isEssential: false,
+    prices: buildMarketPrices(2.79, { promoNote: 'Oferta Bomboniere de Caixa' }),
+  },
+  {
+    id: 'pf-acai-pote-500ml-1500ml',
+    name: 'Açaí Cremoso Pronto com Guaraná Tradicional / Zero Pote (500ml / 1,5L)',
+    category: 'outros' as ProductCategory,
+    unit: '1.5L',
+    brand: 'Oakberry / Frooty / DeMarchi / Sorvelândia',
+    description: 'Açaí congelado pronto para comer com banana, granola, leite em pó e mel',
+    isEssential: false,
+    prices: buildMarketPrices(22.90, { promoNote: 'Oferta Açaí no Pote' }),
+  },
+  {
+    id: 'pf-picole-paleta-caixa-multipack',
+    name: 'Caixa de Picolés de Fruta e Chocolate / Cone Crocante Cornetto (Multipack)',
+    category: 'outros' as ProductCategory,
+    unit: 'caixa',
+    brand: 'Kibon / Nestlé / Sorvelândia / Oggi',
+    description: 'Picolés refrescantes de uva, limão, morango, chocolate e brigadeiro',
+    isEssential: false,
+    prices: buildMarketPrices(16.90),
+  },
+  {
+    id: 'pf-goiabada-cascao-barra-300g',
+    name: 'Goiabada Cascão / Tradicional em Barra ou Pote (300g / 500g)',
+    category: 'outros' as ProductCategory,
+    unit: '300g',
+    brand: 'Predilecta / Ritter / Oderich / Ralston / Val',
+    description: 'Goiabada macia tradicional para sobremesa Romeu e Julieta com queijo e bolos',
+    isEssential: false,
+    prices: buildMarketPrices(4.99, { promoNote: 'Doces Tradicionais' }),
+  },
+  {
+    id: 'pf-pessego-figo-abacaxi-em-calda-lata-450g',
+    name: 'Pêssego em Calda / Figo em Calda / Abacaxi em Calda Lata (450g / 850g)',
+    category: 'outros' as ProductCategory,
+    unit: 'lata',
+    brand: 'Schramm / Oderich / Ritter / Croda / Magro',
+    description: 'Frutas em calda tradicionais do sul para sobremesa de domingo com creme de leite',
+    isEssential: false,
+    prices: buildMarketPrices(9.49, { promoNote: 'Sobremesa Gaúcha em Oferta' }),
+  },
+
+  // ===========================================================================
+  // 24. CONGELADOS PRÁTICOS, AIRFRYER, SALGADINHOS DE FESTA E POLPAS
+  // ===========================================================================
+  {
+    id: 'pf-polenta-palito-congelada-airfryer-1kg',
+    name: 'Polenta em Palito Pré-Frita Congelada Especial Airfryer (Pacote 1kg)',
+    category: 'outros' as ProductCategory,
+    unit: '1kg',
+    brand: 'McCain / Bem Brasil / Seara / Da Colônia',
+    description: 'Polentinha frita crocante por fora e macia por dentro pronta na airfryer',
+    isEssential: false,
+    prices: buildMarketPrices(11.90, { promoNote: 'Sucesso na Airfryer' }),
+  },
+  {
+    id: 'pf-aneis-cebola-onion-rings-congelado-400g',
+    name: 'Anéis de Cebola Empanados Congelados (Onion Rings 400g)',
+    category: 'outros' as ProductCategory,
+    unit: '400g',
+    brand: 'McCain / Seara / Bem Brasil',
+    description: 'Anéis de cebola crocantes para acompanhar hambúrguer caseiro e petiscos',
+    isEssential: false,
+    prices: buildMarketPrices(13.90),
+  },
+  {
+    id: 'pf-salgadinhos-congelados-coxinha-kibe-bolinha-queijo',
+    name: 'Coxinha de Frango / Kibe / Bolinha de Queijo e Risoles Congelado (Pacote)',
+    category: 'outros' as ProductCategory,
+    unit: 'pct',
+    brand: 'Seara / Sadia / Forno de Minas / Massa Leve',
+    description: 'Salgadinhos de festa prontos para aquecer na airfryer ou forno para lanches',
+    isEssential: false,
+    prices: buildMarketPrices(14.90, { promoNote: 'Praticidade no Freezer' }),
+  },
+  {
+    id: 'pf-escondidinho-prato-pronto-congelado-350g',
+    name: 'Escondidinho de Carne Seca / Frango / Strogonoff e Yakisoba Congelado (350g)',
+    category: 'outros' as ProductCategory,
+    unit: '350g',
+    brand: 'Sadia / Seara Gourmet / Perdigão',
+    description: 'Refeição individual completa pronta em 5 minutos no micro-ondas',
+    isEssential: false,
+    prices: buildMarketPrices(11.49),
+  },
+  {
+    id: 'pf-hamburguer-vegetal-plant-based-230g',
+    name: 'Hambúrguer Vegetal / Nuggets e Empanado 100% Plant-Based Vegano (230g)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: '230g',
+    brand: 'Fazenda Futuro / Incrível Seara / Sadia Veg&Tal',
+    description: 'Proteína 100% vegetal com textura e sabor de carne ou frango',
+    isEssential: false,
+    prices: buildMarketPrices(14.90, { cheapestAt: 'Zaffari' }),
+  },
+  {
+    id: 'pf-legumes-congelados-brocolis-ervilha-seleta-300g',
+    name: 'Legumes Congelados: Brócolis / Couve-Flor / Ervilha Fresca / Seleta (300g)',
+    category: 'hortifruti' as ProductCategory,
+    unit: '300g',
+    brand: 'Grano / Seara Nature / Bonduelle / Pama',
+    description: 'Vegetais colhidos e ultracongelados sem conservantes, prontos em minutos',
+    isEssential: false,
+    prices: buildMarketPrices(7.90, { promoNote: 'Oferta Congelados Saudáveis' }),
+  },
+  {
+    id: 'pf-polpa-fruta-congelada-suco-400g',
+    name: 'Polpa de Frutas Congelada: Morango, Maracujá, Abacaxi com Hortelã e Acerola (400g)',
+    category: 'hortifruti' as ProductCategory,
+    unit: '400g',
+    brand: 'DeMarchi / Mais Fruta / Brasfrut',
+    description: 'Polpa 100% fruta natural para bater no liquidificador com água ou leite',
+    isEssential: false,
+    prices: buildMarketPrices(6.99),
+  },
+  {
+    id: 'pf-camarao-descascado-congelado-400g',
+    name: 'Camarão Cinza / Rosa Descascado e Limpo Congelado (Pacote 400g)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: '400g',
+    brand: 'Costa Sul / Opergel / Seara / Frescatto',
+    description: 'Camarão limpo sem cabeça pronto para risotos, massas, bobó e alho e óleo',
+    isEssential: false,
+    prices: buildMarketPrices(34.90, { cheapestAt: 'Stock Center', promoNote: 'Oferta Peixaria Congelados' }),
+  },
+  {
+    id: 'pf-bacalhau-desfiado-lombo-500g',
+    name: 'Bacalhau Desfiado / Lombo de Bacalhau Dessalgado (Bandeja 500g)',
+    category: 'carnes_proteinas' as ProductCategory,
+    unit: '500g',
+    brand: 'Gomes da Costa / Riberalves / Bom Porto',
+    description: 'Bacalhau legítimo dessalgado pronto para bacalhoada, bolinhos e escondidinho',
+    isEssential: false,
+    prices: buildMarketPrices(44.90, { cheapestAt: 'Zaffari' }),
+  },
+
+  // ===========================================================================
+  // 25. BEBIDAS, ADEGA COMPLETA, CHOPP, DESTILADOS, GELO E LEITE VEGETAL
+  // ===========================================================================
+  {
+    id: 'pf-cerveja-zero-alcool-heineken-brahma-350ml',
+    name: 'Cerveja Zero Álcool Heineken 0.0 / Brahma Zero / Budweiser Zero (Lata / Long Neck)',
+    category: 'outros' as ProductCategory,
+    unit: '350ml',
+    brand: 'Heineken 0.0 / Brahma 0,0% / Budweiser Zero',
+    description: 'Cerveja puro malte sem álcool refrescante para beber a qualquer hora',
+    isEssential: false,
+    prices: buildMarketPrices(4.79, { promoNote: 'Oferta Cervejas Zero Álcool' }),
+  },
+  {
+    id: 'pf-cerveja-long-neck-corona-stella-eisenbahn-330ml',
+    name: 'Cerveja Long Neck Corona Extra / Stella Artois / Eisenbahn / Patagonia (330ml)',
+    category: 'outros' as ProductCategory,
+    unit: '330ml',
+    brand: 'Corona / Stella Artois / Eisenbahn / Spaten',
+    description: 'Cervejas especiais em garrafa long neck avulsa ou pack com 6 unidades',
+    isEssential: false,
+    prices: buildMarketPrices(5.79, { cheapestAt: 'Stock Center', promoNote: 'Especial Happy Hour e Churrasco' }),
+  },
+  {
+    id: 'pf-cerveja-garrafa-600ml-litrao',
+    name: 'Cerveja Garrafa 600ml / Litrão 1L Polar, Original, Brahma e Antarctica',
+    category: 'outros' as ProductCategory,
+    unit: 'garrafa',
+    brand: 'Polar / Original / Antarctica / Brahma / Amstel',
+    description: 'Cerveja de garrafa 600ml e litrão tradicional para churrasco e roda de amigos',
+    isEssential: false,
+    prices: buildMarketPrices(6.99, { promoNote: 'Preço Atacado Caixa / Pack' }),
+  },
+  {
+    id: 'pf-barril-chopp-heineken-5l',
+    name: 'Barril de Chopp Heineken / Chopp Pilsen Draft (Barril 5 Litros)',
+    category: 'outros' as ProductCategory,
+    unit: '5L',
+    brand: 'Heineken Draught Keg / Ashby / Germania',
+    description: 'Barril de chopp 5 litros sob pressão pronto para tirar em casa no churrasco',
+    isEssential: false,
+    prices: buildMarketPrices(94.90, { cheapestAt: 'Stock Center', promoNote: 'Chopp em Casa Fim de Semana' }),
+  },
+  {
+    id: 'pf-whisky-red-label-ballantines-jack-daniels-1l',
+    name: 'Whisky Escocês / Bourbon Importado (Red Label / Ballantine’s / White Horse 1L)',
+    category: 'outros' as ProductCategory,
+    unit: '1L',
+    brand: 'Johnnie Walker Red Label / Ballantine’s / White Horse / Jack Daniel’s',
+    description: 'Whisky 100% original importado para festas, drinks e comemorações',
+    isEssential: false,
+    prices: buildMarketPrices(74.90, { cheapestAt: 'Atacadão', promoNote: 'Super Preço Adega Atacadão' }),
+  },
+  {
+    id: 'pf-aperitivo-campari-aperol-amarula-conhaque',
+    name: 'Aperitivo Campari / Aperol Spritz / Licor Amarula / Conhaque e Rum (750ml / 900ml)',
+    category: 'outros' as ProductCategory,
+    unit: 'garrafa',
+    brand: 'Campari / Aperol / Amarula / Dreher / Bacardi',
+    description: 'Bebidas clássicas para Aperol Spritz, Negroni, drinks de inverno e sobremesas',
+    isEssential: false,
+    prices: buildMarketPrices(49.90, { cheapestAt: 'Zaffari' }),
+  },
+  {
+    id: 'pf-vodka-smirnoff-orloff-absolut-1l',
+    name: 'Vodka Tridestilada Smirnoff / Orloff / Natasha / Absolut (998ml / 1L)',
+    category: 'outros' as ProductCategory,
+    unit: '1L',
+    brand: 'Smirnoff / Orloff / Absolut / Natasha',
+    description: 'Vodka pura para caipiroska de frutas, drinks com energético e festas',
+    isEssential: false,
+    prices: buildMarketPrices(32.90, { cheapestAt: 'Stock Center', promoNote: 'Oferta Destilados' }),
+  },
+  {
+    id: 'pf-gin-tanqueray-gordons-rocks-750ml',
+    name: 'Gin London Dry Tanqueray / Gordon’s / Seagers / Rocks (750ml / 1L)',
+    category: 'outros' as ProductCategory,
+    unit: '750ml',
+    brand: 'Tanqueray / Gordon’s / Beefeater / Rocks',
+    description: 'Gin aromático perfeito para Gin Tônica com limão, especiarias ou energético',
+    isEssential: false,
+    prices: buildMarketPrices(39.90, { cheapestAt: 'Atacadão' }),
+  },
+  {
+    id: 'pf-cachaca-51-velho-barreiro-ypioca-965ml',
+    name: 'Cachaça Tradicional Prata / Ouro para Caipirinha (51 / Velho Barreiro / Ypióca 965ml)',
+    category: 'outros' as ProductCategory,
+    unit: '965ml',
+    brand: 'Pirassununga 51 / Velho Barreiro / Ypióca / Sagatiba',
+    description: 'Cachaça clássica brasileira para preparar caipirinha de limão e quentão',
+    isEssential: false,
+    prices: buildMarketPrices(12.90, { promoNote: 'Especial Caipirinha' }),
+  },
+  {
+    id: 'pf-saco-de-gelo-cubo-3kg-5kg',
+    name: 'Saco de Gelo Filtrado em Cubos para Churrasco e Cooler (Pacote 3kg / 5kg)',
+    category: 'outros' as ProductCategory,
+    unit: '5kg',
+    brand: 'Gelo Puro / Cristal / Polar Local',
+    description: 'Gelo cristalino de água filtrada indispensável para gelar bebidas no fim de semana',
+    isEssential: false,
+    prices: buildMarketPrices(8.90, { promoNote: 'Pronto no Freezer da Entrada' }),
+  },
+  {
+    id: 'pf-leite-vegetal-aveia-amendoas-ades-1l',
+    name: 'Bebida Vegetal de Aveia / Amêndoas / Castanha / Soja Ades (1 Litro)',
+    category: 'laticinios_frios' as ProductCategory,
+    unit: '1L',
+    brand: 'Ades / A Tal da Castanha / Nude / Silk / Nature’s Heart',
+    description: 'Leite vegetal zero lactose e 100% vegano para café, vitaminas e receitas',
+    isEssential: false,
+    prices: buildMarketPrices(8.49, { cheapestAt: 'Zaffari', promoNote: 'Oferta Saudáveis e Sem Lactose' }),
+  },
+
+  // ===========================================================================
+  // 26. LIMPEZA PESADA, FARMACINHA, CAMISINHA/PRESERVATIVO, BAZAR, CHURRASCO E PET
+  // ===========================================================================
+  {
+    id: 'pf-preservativo-camisinha-jontex-prudence-3un',
+    name: 'Camisinha / Preservativo Masculino Lubrificado Jontex, Prudence e Olla (Cartela 3 un / 6 un)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '3 un',
+    brand: 'Jontex / Prudence / Olla / Blowtex',
+    description: 'Camisinha lubrificada tradicional, sensível e segura disponível na farmacinha e caixas do mercado',
+    isEssential: false,
+    prices: buildMarketPrices(6.49, { promoNote: 'Oferta Saúde & Bem-Estar no Caixa' }),
+  },
+  {
+    id: 'pf-preservativo-camisinha-sabores-texturizado-prudence',
+    name: 'Camisinha / Preservativo Texturizado, Extra Fino e Sabores (Morango / Menta / Uva - Pack 3 a 8 un)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'pct',
+    brand: 'Prudence / Olla / Jontex / Blowtex',
+    description: 'Preservativos camisinha com aroma/sabor, texturizados, retardante ou zero látex Skyn',
+    isEssential: false,
+    prices: buildMarketPrices(8.90, { cheapestAt: 'Atacadão', promoNote: 'Pack Econômico Leve Mais Pague Menos' }),
+  },
+  {
+    id: 'pf-gel-lubrificante-intimo-kmed-ky',
+    name: 'Gel Lubrificante Íntimo à Base de Água Neutro / 2 em 1 (K-Med / K-Y / Prudence 50g / 100g)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'K-Med Cimed / K-Y / Prudence Gel / Olla',
+    description: 'Gel lubrificante íntimo dermatologicamente testado compatível com camisinha/preservativo',
+    isEssential: false,
+    prices: buildMarketPrices(15.90),
+  },
+  {
+    id: 'pf-curativo-bandaid-esparadrapo-caixa',
+    name: 'Curativo Adesivo Band-Aid Transparente / Flexível + Esparadrapo e Algodão (Caixa 10 un / 40 un)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'caixa',
+    brand: 'Band-Aid Johnson’s / Cremer / Nexcare 3M',
+    description: 'Curativos adesivos resistentes à água para pequenos cortes, bolhas e primeiros socorros',
+    isEssential: false,
+    prices: buildMarketPrices(5.99, { promoNote: 'Farmacinha Doméstica' }),
+  },
+  {
+    id: 'pf-sal-de-fruta-eno-estomazil-engov',
+    name: 'Sal de Fruta Eno / Antiácido Estomazil / Epocler e Engov (Envelope / Cartela)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Eno / Estomazil / Engov / Epocler',
+    description: 'Alívio rápido para azia, má digestão após o churrasco e bem-estar disponível no caixa',
+    isEssential: false,
+    prices: buildMarketPrices(3.49),
+  },
+  {
+    id: 'pf-pomada-assadura-hipoglos-bepantol-45g',
+    name: 'Pomada Preventiva de Assaduras Infantil Hipoglós / Bepantol Baby / Dermodex (45g)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '45g',
+    brand: 'Hipoglós / Bepantol Baby / Nistatina + Óxido de Zinco / PomPom',
+    description: 'Pomada protetora e regeneradora para pele delicada do bebê a cada troca de fralda',
+    isEssential: false,
+    prices: buildMarketPrices(14.90, { cheapestAt: 'Atacadão', promoNote: 'Oferta Feirão do Bebê' }),
+  },
+  {
+    id: 'pf-fralda-geriatrica-adulto-tena-bigfral',
+    name: 'Fralda Geriátrica Adulto Descartável e Roupa Íntima (Tena / Bigfral / Plenitud - M/G/EG)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'pct',
+    brand: 'Tena / Bigfral / Plenitud / Cotidian',
+    description: 'Fralda adulta anatômica com alta absorção para incontinência e uso diurno/noturno',
+    isEssential: false,
+    prices: buildMarketPrices(29.90, { cheapestAt: 'Stock Center', promoNote: 'Preço Atacado Cuidado Adulto' }),
+  },
+  {
+    id: 'pf-tira-manchas-vanish-po-liquido-450g',
+    name: 'Alvejante Sem Cloro Tira-Manchas Roupas Brancas e Coloridas (Vanish 450g / 1,5L)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Vanish / Girando Sol / Ypê Tira-Manchas / Brilhante',
+    description: 'Remove manchas difíceis na lavagem preservando as cores e o branco das roupas',
+    isEssential: false,
+    prices: buildMarketPrices(12.90, { promoNote: 'Festival de Lavanderia' }),
+  },
+  {
+    id: 'pf-alcool-liquido-70-gel-1l',
+    name: 'Álcool Líquido 70% / 46% para Limpeza e Álcool em Gel Antisséptico (1 Litro)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '1L',
+    brand: 'Tupi / Sol / Zulu / Giovanna Baby / Asseptgel',
+    description: 'Álcool doméstico para desinfecção rápida de bancadas, vidros, eletrônicos e mãos',
+    isEssential: true,
+    prices: buildMarketPrices(6.49, { promoNote: 'Essencial de Limpeza e Higiene' }),
+  },
+  {
+    id: 'pf-limpa-aluminio-forno-desentupidor',
+    name: 'Limpa-Alumínio / Limpa-Forno / Desentupidor de Pia e Ralo Diabo Verde (500ml)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Diabo Verde / Bombril / Limppano / Girando Sol',
+    description: 'Produtos de limpeza pesada para desincrustar grelhas de churrasco, panelas e ralos',
+    isEssential: false,
+    prices: buildMarketPrices(5.99),
+  },
+  {
+    id: 'pf-odorizador-ambiente-glade-bom-ar-360ml',
+    name: 'Odorizador de Ambiente Spray Aerosol Bom Ar / Glade Lavanda e Toque de Maciez (360ml)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '360ml',
+    brand: 'Glade / Bom Ar Air Wick / Coala Essências',
+    description: 'Purificador de ar perfumado para banheiro, sala e quartos',
+    isEssential: false,
+    prices: buildMarketPrices(10.90, { promoNote: 'Oferta Casa Perfumada' }),
+  },
+  {
+    id: 'pf-antimofo-evita-mofo-secar-armario',
+    name: 'Antimofo / Evita Mofo Desumidificador para Armário e Guarda-Roupa (Secar Pote)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Secar / Qualitá / Sanol',
+    description: 'Absorve a umidade evitando mofo, bolor e mau cheiro em roupas no inverno do RS',
+    isEssential: false,
+    prices: buildMarketPrices(8.90),
+  },
+  {
+    id: 'pf-vassoura-novica-bettanin-un',
+    name: 'Vassoura Multiuso Cerdas Macias Noviça Bettanin / Condor (Unidade)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Bettanin Noviça / Condor / Limppano',
+    description: 'Vassoura com cabo longo para pisos internos, porcelanato, madeira e pátio',
+    isEssential: false,
+    prices: buildMarketPrices(13.90),
+  },
+  {
+    id: 'pf-rodo-duplo-balde-plastico-12l',
+    name: 'Rodo Duplo de Borracha 40cm / Balde Plástico Reforçado 12L e Pá de Lixo',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Bettanin / Sanremo / Condor / Plasútil',
+    description: 'Rodo seca-tudo e balde resistente para faxina doméstica e lavanderia',
+    isEssential: false,
+    prices: buildMarketPrices(11.90),
+  },
+  {
+    id: 'pf-luva-borracha-limpeza-louca-par',
+    name: 'Luva de Borracha Látex Forrada para Lavar Louça e Limpeza (Par P/M/G)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'par',
+    brand: 'Mucambo / Bettanin / Danny / Scotch-Brite',
+    description: 'Luvas impermeáveis que protegem as mãos da água fria no inverno e produtos químicos',
+    isEssential: false,
+    prices: buildMarketPrices(6.99),
+  },
+  {
+    id: 'pf-papel-aluminio-rolo-30cm',
+    name: 'Papel Alumínio Rolo para Assados e Churrasco (30cm x 4m / 7,5m)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'rolo',
+    brand: 'Wyda / Boreda / Qualitá',
+    description: 'Folha de alumínio resistente para assar costela, carnes no forno e conservar alimentos',
+    isEssential: true,
+    prices: buildMarketPrices(4.49),
+  },
+  {
+    id: 'pf-plastico-filme-pvc-alimentos-rolo',
+    name: 'Plástico Filme PVC / Papel Filme Esticável para Alimentos (28cm x 15m / 30m)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'rolo',
+    brand: 'Wyda / Alpfilm / Boreda',
+    description: 'Filme plástico transparente para cobrir tigelas, frutas, carnes e lanches na geladeira',
+    isEssential: true,
+    prices: buildMarketPrices(4.99),
+  },
+  {
+    id: 'pf-filtro-de-papel-coador-cafe-102-103',
+    name: 'Filtro de Papel / Coador de Café 102 e 103 (Caixa 30 unidades)',
+    category: 'cesta_basica' as ProductCategory,
+    unit: '30 un',
+    brand: 'Melitta / Brigitta / 3 Corações / Iguaçu',
+    description: 'Filtro de papel com microfuros para passar café fresquinho todos os dias',
+    isEssential: true,
+    prices: buildMarketPrices(4.29, { promoNote: 'Essencial do Café' }),
+  },
+  {
+    id: 'pf-repelente-corporal-off-repelex',
+    name: 'Repelente de Insetos Corporal Spray / Loção (Off! Family / Repelex / Exposis)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Off! / Repelex / Exposis / Above',
+    description: 'Proteção eficaz da pele contra mosquitos da dengue, pernilongos e borrachudos',
+    isEssential: false,
+    prices: buildMarketPrices(16.90, { promoNote: 'Proteção da Família' }),
+  },
+  {
+    id: 'pf-protetor-solar-fps30-fps50-sundown-nivea',
+    name: 'Protetor Solar / Filtro Solar Corporal e Facial FPS 30 e FPS 50 (120ml / 200ml)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Sundown / Nivea Sun / Cenoura & Bronze / Australian Gold',
+    description: 'Bloqueador solar resistente à água com proteção UVA/UVB imediata',
+    isEssential: false,
+    prices: buildMarketPrices(32.90),
+  },
+  {
+    id: 'pf-tintura-cabelo-coreton-koleston',
+    name: 'Tintura de Cabelo Creme Coloração Permanente (Cor&Ton / Koleston / Biocolor)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'kit',
+    brand: 'Niely Cor&Ton / Wella Koleston / Biocolor / Garnier Nutrisse',
+    description: 'Kit de tintura capilar com cobertura 100% dos fios brancos e brilho intenso',
+    isEssential: false,
+    prices: buildMarketPrices(12.49, { promoNote: 'Oferta Perfumaria e Beleza' }),
+  },
+  {
+    id: 'pf-creme-pentear-mascara-capilar-300ml',
+    name: 'Creme para Pentear / Máscara de Tratamento Capilar (Salon Line / Seda / Elseve)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Salon Line / Seda / Elseve / Pantene / Skala 1kg',
+    description: 'Creme de pentear sem enxágue e pote de hidratação Skala/Novex para todos os cabelos',
+    isEssential: false,
+    prices: buildMarketPrices(9.90),
+  },
+  {
+    id: 'pf-gel-fixador-cabelo-bozzano-300g',
+    name: 'Gel Fixador para Cabelo / Pomada Modeladora (Bozzano / Ny.Looks 300g)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '300g',
+    brand: 'Bozzano / Ny.Looks / Salon Line',
+    description: 'Gel capilar fixação forte sem álcool efeito molhado ou matte',
+    isEssential: false,
+    prices: buildMarketPrices(8.49),
+  },
+  {
+    id: 'pf-acetona-removedor-esmalte-100ml',
+    name: 'Removedor de Esmalte com/sem Acetona (Lutex / Farmax / Ideal 100ml)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '100ml',
+    brand: 'Lutex / Farmax / Ideal / Cinco',
+    description: 'Removedor rápido de esmalte que não resseca as unhas e cutículas',
+    isEssential: false,
+    prices: buildMarketPrices(4.29),
+  },
+  {
+    id: 'pf-esmalte-unhas-risque-impala-8ml',
+    name: 'Esmalte de Unhas Cremoso / Cintilante / Base Incolor (Risqué / Impala / Colorama)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: '8ml',
+    brand: 'Risqué / Impala / Colorama / Dailus',
+    description: 'Esmaltes de secagem rápida, longa duração e brilho intenso',
+    isEssential: false,
+    prices: buildMarketPrices(4.99),
+  },
+  {
+    id: 'pf-lenco-de-papel-bolso-caixa-kleenex',
+    name: 'Lenço de Papel Folha Dupla / Tripla de Bolso e Caixa (Kleenex / Mili / Kiss)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Kleenex / Mili / Kiss / Softys',
+    description: 'Lenços de papel macios indispensáveis para resfriados, alergias e bolsa',
+    isEssential: false,
+    prices: buildMarketPrices(3.99),
+  },
+  {
+    id: 'pf-fio-dental-menta-50m-100m',
+    name: 'Fio Dental Encerado Menta / Neutro (Colgate / Oral-B / Johnson’s Reach 50m / 100m)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Colgate / Oral-B Essential Floss / Johnson’s Reach / Sanifill',
+    description: 'Fio dental deslizante que remove a placa bacteriana entre os dentes',
+    isEssential: true,
+    prices: buildMarketPrices(6.49),
+  },
+  {
+    id: 'pf-hidratante-corporal-nivea-monange-200ml',
+    name: 'Loção Hidratante Corporal Nivea Milk / Monange / Paixão / Dove (200ml / 400ml)',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'un',
+    brand: 'Nivea / Monange / Dove / Paixão / Neutrogena',
+    description: 'Hidratação profunda 48h para pele seca e extrasseca no frio',
+    isEssential: false,
+    prices: buildMarketPrices(13.90, { promoNote: 'Oferta Cuidado com a Pele' }),
+  },
+  {
+    id: 'pf-pilha-alcalina-duracell-aa-aaa-4un',
+    name: 'Pilhas Alcalinas AA Pequena / AAA Palito (Duracell / Panasonic / Rayovac - Cartela 4 un)',
+    category: 'outros' as ProductCategory,
+    unit: 'cartela',
+    brand: 'Duracell / Panasonic / Rayovac / Philips',
+    description: 'Pilhas de longa duração para controles remotos, brinquedos, mouse e lanternas',
+    isEssential: true,
+    prices: buildMarketPrices(9.90, { promoNote: 'Utilidades no Caixa' }),
+  },
+  {
+    id: 'pf-lampada-led-bulbo-9w-12w-bivolt',
+    name: 'Lâmpada LED Bulbo 9W / 12W / 15W Luz Branca Bivolt Econômica',
+    category: 'outros' as ProductCategory,
+    unit: 'un',
+    brand: 'Avant / Elgin / Philips / Taschibra / Osram',
+    description: 'Lâmpada LED de alta luminosidade e até 85% de economia de energia elétrica',
+    isEssential: true,
+    prices: buildMarketPrices(5.99, { promoNote: 'Oferta Bazar e Elétrica' }),
+  },
+  {
+    id: 'pf-acendedor-churrasqueira-alcool-solido',
+    name: 'Acendedor de Churrasqueira Cubos / Bastão e Álcool Gel Acendedor para Carvão',
+    category: 'outros' as ProductCategory,
+    unit: 'un',
+    brand: 'Fiat Lux / Paraná / Brasa Fácil / Fogo Fácil',
+    description: 'Acendedor seguro sem fumaça para acender carvão na churrasqueira e lareira',
+    isEssential: false,
+    prices: buildMarketPrices(5.49, { promoNote: 'Bazar do Churrasco' }),
+  },
+  {
+    id: 'pf-espeto-bambu-palito-dente-gina',
+    name: 'Espeto de Bambu para Churrasquinho (50 un) + Palito de Dente Gina',
+    category: 'outros' as ProductCategory,
+    unit: 'pct',
+    brand: 'Gina / Paraná / Talge',
+    description: 'Espetinhos de madeira para xixo/coraçãozinho e palitos de dente tradicionais',
+    isEssential: false,
+    prices: buildMarketPrices(3.49),
+  },
+  {
+    id: 'pf-copo-descartavel-prato-talher-festa',
+    name: 'Copo Descartável 180ml / 300ml (Tira 100 un) + Prato, Garfo e Marmita Descartável',
+    category: 'limpeza_higiene' as ProductCategory,
+    unit: 'pct',
+    brand: 'Copobras / Altacopo / Totalplast / Wyda',
+    description: 'Descartáveis práticos para festas, churrasco, escritório e congelamento de marmitas',
+    isEssential: false,
+    prices: buildMarketPrices(5.49, { cheapestAt: 'Atacadão', promoNote: 'Preço Atacado Embalagens' }),
+  },
+  {
+    id: 'pf-racao-saco-grande-10kg-15kg-caes-gatos',
+    name: 'Ração Seca Pacote Econômico 10,1kg / 15kg para Cães e Gatos Adultos',
+    category: 'outros' as ProductCategory,
+    unit: '15kg',
+    brand: 'Pedigree / Golden / Dog Chow / Whiskas / Magnus / Birbo',
+    description: 'Saco fechado de ração premium/standard com o maior custo-benefício mensal',
+    isEssential: false,
+    prices: buildMarketPrices(89.90, { cheapestAt: 'Stock Center', promoNote: 'Super Economia Saco 10kg/15kg' }),
+  },
+  {
+    id: 'pf-petisco-bifinho-canino-dreamies-pet',
+    name: 'Petisco Bifinho para Cães (Keldog / Pedigree) e Petisco para Gatos (Dreamies / Whiskas)',
+    category: 'outros' as ProductCategory,
+    unit: 'pct',
+    brand: 'Keldog / Pedigree Dentastix / Dreamies / Doguitos',
+    description: 'Bifinhos macios de carne/frango, ossinhos mastigáveis e petiscos crocantes para pets',
+    isEssential: false,
+    prices: buildMarketPrices(6.49, { promoNote: 'Mimo para o seu Pet' }),
+  },
+  {
+    id: 'pf-alpiste-semente-girassol-passaros-500g',
+    name: 'Semente de Girassol / Alpiste Limpo / Painço e Mistura para Pássaros e Calopsita (500g)',
+    category: 'outros' as ProductCategory,
+    unit: '500g',
+    brand: 'Reino das Aves / Nutrópica / Alcon / Fritz & Frida',
+    description: 'Grãos e sementes selecionadas para alimentar pássaros, papagaios e calopsitas',
+    isEssential: false,
+    prices: buildMarketPrices(5.90),
+  },
 ];
 
 /**
@@ -2846,7 +4021,7 @@ export function mergeCatalogWithLiveItems(
 
   const mergedMap = new Map<string, PromotionItem>();
 
-  // 1. Seed with full catalog so all 180+ items are guaranteed to exist
+  // 1. Seed with full catalog so all 300+ items are guaranteed to exist
   fullCatalog.forEach((item) => {
     mergedMap.set(item.id, item);
   });
@@ -2887,31 +4062,110 @@ export function mergeCatalogWithLiveItems(
 }
 
 /**
- * Smart search matcher with Brazilian grocery synonyms, singular/plural stemming,
- * and multi-token matching (e.g., "salgadinho", "doritos", "bolachinha", "refri", "pizza calabresa").
+ * Bidirectional exact synonym groups: if the user searches ANY term/phrase in a group,
+ * it matches ANY product containing ANY term/phrase in that same group.
+ */
+const EQUIVALENT_SYNONYM_GROUPS: string[][] = [
+  ['camisinha', 'camisinhas', 'preservativo', 'preservativos', 'jontex', 'prudence', 'olla', 'blowtex'],
+  ['lubrificante', 'lubrificante intimo', 'gel intimo', 'k med', 'kmed', 'k y', 'ky'],
+  ['band aid', 'bandaid', 'curativo', 'curativos', 'esparadrapo'],
+  ['pasta de dente', 'pasta dental', 'creme dental', 'colgate', 'sorriso', 'oral b', 'oralb', 'sensodyne'],
+  ['escova de dente', 'escova de dentes', 'escova dental'],
+  ['cotonete', 'cotonetes', 'haste flexivel', 'hastes flexiveis'],
+  ['gilete', 'gillette', 'prestobarba', 'barbeador', 'aparelho de barbear', 'lamina de barbear'],
+  ['absorvente', 'absorventes', 'modess', 'intimus', 'always', 'sempre livre', 'protetor diario', 'carefree', 'ob'],
+  ['desodorante', 'antitranspirante', 'rexona', 'above', 'herbissimo', 'roll on', 'rollon'],
+  ['xampu', 'shampoo', 'champu', 'condicionador'],
+  ['papel higienico', 'neve', 'personal', 'sublime', 'dualette'],
+  ['fralda', 'fraldas', 'pampers', 'huggies', 'babysec', 'turma da monica'],
+  ['fralda geriatrica', 'fralda adulto', 'tena', 'bigfral', 'plenitud'],
+  ['hipoglos', 'bepantol', 'pomada assadura', 'pomada para assadura'],
+  ['acetona', 'removedor de esmalte', 'farmax', 'lutex'],
+  ['repelente', 'off', 'repelex', 'exposis'],
+  ['protetor solar', 'filtro solar', 'bloqueador solar', 'sundown', 'nivea sun'],
+  ['sal de fruta', 'eno', 'estomazil', 'antiacido', 'engov', 'epocler'],
+  ['bombril', 'assolan', 'la de aco', 'esponja de aco', 'palha de aco'],
+  ['esponja de louca', 'bucha de louca', 'scotch brite', 'esfrebom'],
+  ['qboa', 'kiboa', 'candida', 'agua sanitaria', 'cloro'],
+  ['detergente', 'lava loucas', 'lava louca', 'limpol', 'minuano'],
+  ['sabao em po', 'sabao liquido', 'lava roupas', 'omo', 'tixan', 'brilhante', 'girando sol'],
+  ['tira manchas', 'alvejante sem cloro', 'vanish'],
+  ['amaciante', 'downy', 'comfort'],
+  ['multiuso', 'desengordurante', 'veja', 'mr musculo', 'cif'],
+  ['pedra sanitaria', 'bloco sanitario', 'pato purific', 'harpic'],
+  ['bom ar', 'odorizador', 'purificador de ar', 'glade', 'air wick'],
+  ['antimofo', 'evita mofo', 'desumidificador', 'secar'],
+  ['inseticida', 'mata mosquito', 'veneno mosquito', 'sbp', 'raid', 'baygon'],
+  ['papel aluminio', 'folha de aluminio'],
+  ['papel filme', 'plastico filme', 'filme pvc', 'insulfilm'],
+  ['coador de cafe', 'coador', 'filtro de cafe', 'filtro de papel', 'filtro 102', 'filtro 103'],
+  ['pilha', 'pilhas', 'duracell', 'rayovac', 'panasonic'],
+  ['lampada', 'lampadas', 'bulbo led', 'lampada led'],
+  ['cacetinho', 'pao frances', 'pao de sal'],
+  ['cueca virada', 'grostoli', 'cavaquinho'],
+  ['chimia', 'schmier', 'geleia'],
+  ['bergamota', 'mexerica', 'tangerina', 'ponkan', 'pocan', 'montenegrina', 'mimosa'],
+  ['aipim', 'mandioca', 'macaxeira'],
+  ['moranga', 'abobora', 'cabotia', 'jerimum'],
+  ['cheiro verde', 'tempero verde', 'salsinha', 'cebolinha', 'salsa'],
+  ['vazio', 'fraldinha'],
+  ['chuleta', 'bife ancho', 'entrecot', 'entrecote', 'noix'],
+  ['carne moida', 'guisado'],
+  ['costela', 'costela minga', 'ponta de agulha', 'costela janela', 'costela ripa'],
+  ['panceta', 'barriga suina', 'torresmo', 'pururuca'],
+  ['salsicha', 'vina', 'hot dog', 'cachorro quente'],
+  ['salsichao', 'linguica toscana', 'linguica churrasco'],
+  ['coracaozinho', 'coracao de frango'],
+  ['bolacha', 'bolachas', 'bolachinha', 'bolachinhas', 'biscoito', 'biscoitos'],
+  ['refri', 'refris', 'refrigerante', 'refrigerantes', 'gasosa'],
+  ['cerveja', 'cervejas', 'breja', 'cerva', 'chopp', 'chope'],
+  ['energetico', 'energeticos', 'monster', 'red bull', 'baly'],
+  ['isotonico', 'gatorade', 'powerade'],
+  ['miojo', 'lamen', 'macarrao instantaneo', 'nissin', 'cup noodles'],
+  ['agnoline', 'capeletti', 'capelletti'],
+  ['maizena', 'maisena', 'amido de milho'],
+  ['po royal', 'fermento em po', 'fermento quimico', 'fermento para bolo'],
+  ['mussarela', 'mucarela', 'muzzarella', 'queijo lanche'],
+  ['requeijao', 'catupiry'],
+  ['achocolatado', 'nescau', 'toddy', 'toddynho'],
+  ['leite em po', 'leite ninho', 'ninho'],
+  ['leite condensado', 'leite moca', 'moca'],
+  ['gelo', 'saco de gelo', 'gelo em cubo'],
+  ['carvao', 'carvao vegetal'],
+  ['areia de gato', 'areia higienica', 'pipicat', 'tapete higienico'],
+];
+
+/**
+ * Broad category umbrella groups: when a user searches a generic aisle/category term
+ * (the first 6 elements), it returns all products belonging to that category group.
  */
 const SEARCH_SYNONYM_GROUPS: string[][] = [
-  ['refri', 'refris', 'refrigerante', 'refrigerantes', 'coca', 'guarana', 'fruki', 'pepsi', 'fanta', 'sprite', 'soda', 'sukita', 'h2oh', 'schweppes', 'tonica'],
+  ['refri', 'refris', 'refrigerante', 'refrigerantes', 'gasosa', 'bebida', 'coca', 'guarana', 'fruki', 'pepsi', 'fanta', 'sprite', 'soda', 'sukita', 'h2oh', 'schweppes', 'tonica'],
   ['bolacha', 'bolachas', 'bolachinha', 'bolachinhas', 'biscoito', 'biscoitos', 'oreo', 'passatempo', 'bono', 'trakinas', 'negresco', 'wafer', 'cookie', 'cookies', 'maria', 'maizena', 'agua e sal', 'cream cracker', 'club social', 'zeze', 'rosquinha', 'amanteigada'],
-  ['salgadinho', 'salgadinhos', 'chips', 'snack', 'snacks', 'doritos', 'ruffles', 'cheetos', 'fandangos', 'pringles', 'torcida', 'cebolitos', 'baconzitos', 'elma chips', 'amendoim'],
-  ['pizza', 'pizzas', 'mini pizza'],
+  ['salgadinho', 'salgadinhos', 'chips', 'snack', 'snacks', 'petisco', 'doritos', 'ruffles', 'cheetos', 'fandangos', 'pringles', 'torcida', 'cebolitos', 'baconzitos', 'elma chips', 'amendoim', 'coxinha', 'kibe', 'pastel'],
+  ['pizza', 'pizzas', 'mini pizza', 'massa de pizza', 'calabresa', 'quatro queijos'],
   ['arroz', 'risoto', 'arborio', 'parboilizado', 'agulhinha', 'cateto'],
   ['feijao', 'feijoes', 'feijoada', 'carioca', 'fradinho', 'lentilha', 'grao de bico', 'ervilha'],
-  ['massa', 'massas', 'macarrao', 'espaguete', 'parafuso', 'penne', 'miojo', 'lamen', 'nissin', 'lasanha'],
-  ['carne', 'carnes', 'bovina', 'churrasco', 'acougue', 'picanha', 'costela', 'alcatra', 'contrafile', 'vazio', 'fraldinha', 'moida', 'acem', 'patinho', 'bife', 'carvao', 'pao de alho', 'sal grosso'],
-  ['frango', 'aves', 'peito de frango', 'sassami', 'coxa', 'sobrecoxa', 'tulipa', 'nuggets', 'empanado'],
-  ['porco', 'suino', 'suina', 'bisteca', 'costelinha', 'linguica', 'calabresa', 'toscana', 'salsicha', 'salsichao', 'bacon', 'banha'],
-  ['erva', 'chimarrao', 'erva mate', 'mate'],
-  ['cerveja', 'cervejas', 'breja', 'chopp', 'pilsen', 'puro malte', 'heineken', 'amstel', 'brahma', 'polar', 'spaten', 'budweiser'],
+  ['massa', 'massas', 'macarrao', 'espaguete', 'parafuso', 'penne', 'miojo', 'lamen', 'nissin', 'lasanha', 'capeletti', 'agnoline', 'nhoque', 'yakisoba', 'pastel'],
+  ['carne', 'carnes', 'bovina', 'churrasco', 'acougue', 'bife', 'picanha', 'costela', 'alcatra', 'contrafile', 'vazio', 'fraldinha', 'moida', 'acem', 'patinho', 'maminha', 'chuleta', 'entrecot', 'ancho', 'cupim', 'musculo', 'ossobuco', 'paleta', 'agulha', 'file mignon', 'matambre', 'ovelha', 'cordeiro', 'carvao', 'pao de alho', 'sal grosso'],
+  ['frango', 'aves', 'peito de frango', 'sassami', 'coxa', 'sobrecoxa', 'tulipa', 'nuggets', 'empanado', 'coracao', 'coracaozinho', 'moela', 'figado', 'frango inteiro'],
+  ['porco', 'suino', 'suina', 'bisteca', 'costelinha', 'pernil', 'lombo', 'panceta', 'barriga', 'torresmo', 'linguica', 'calabresa', 'toscana', 'salsicha', 'salsichao', 'bock', 'morcela', 'bacon', 'banha'],
+  ['peixe', 'peixes', 'pescado', 'pescados', 'peixaria', 'frutos do mar', 'tilapia', 'salmao', 'merluza', 'camarao', 'bacalhau', 'atum', 'sardinha'],
+  ['frios', 'laticinios', 'queijo', 'queijos', 'iam', 'embutidos', 'mussarela', 'prato', 'colonial', 'minas', 'ricota', 'provolone', 'gorgonzola', 'parmesao', 'presunto', 'mortadela', 'salame', 'peito de peru', 'copa', 'apresuntado', 'nata', 'manteiga', 'margarina', 'requeijao', 'iogurte', 'yakult', 'toddynho', 'chantilly'],
+  ['erva', 'chimarrao', 'erva mate', 'mate', 'cha', 'chas'],
+  ['cerveja', 'cervejas', 'breja', 'chopp', 'pilsen', 'puro malte', 'heineken', 'amstel', 'brahma', 'polar', 'spaten', 'budweiser', 'corona', 'stella', 'eisenbahn', 'litrao', 'long neck', 'zero alcool'],
   ['energetico', 'energeticos', 'monster', 'red bull', 'baly', 'gatorade', 'isotonico'],
-  ['vinho', 'vinhos', 'espumante', 'moscatel', 'cabernet', 'merlot', 'tannat', 'bordo', 'sangue de boi', 'pergola', 'salton', 'aurora'],
-  ['tempero', 'temperos', 'condimento', 'conserva', 'conservas', 'sazon', 'knorr', 'maggi', 'oregano', 'pimenta', 'vinagre', 'mostarda', 'ketchup', 'maionese', 'shoyu', 'azeitona', 'pepino', 'picles', 'palmito'],
-  ['padaria', 'pao', 'paes', 'cacetinho', 'pao frances', 'cuca', 'bolo', 'torrada', 'hot dog', 'cachorro quente', 'xis'],
-  ['matinal', 'matinais', 'cereal', 'cereais', 'aveia', 'granola', 'sucrilhos', 'leite em po', 'ninho', 'geleia', 'chimia', 'nutella', 'mel'],
-  ['mandioca', 'aipim', 'farofa', 'polvilho', 'tapioca', 'sagu', 'canjica', 'fuba', 'polenta'],
-  ['limpeza', 'faxina', 'esponja', 'bombril', 'multiuso', 'veja', 'desengordurante', 'cif', 'pato', 'saco de lixo', 'papel toalha', 'guardanapo', 'aluminio', 'inseticida', 'sbp'],
-  ['higiene', 'perfumaria', 'bebe', 'escova de dente', 'fio dental', 'enxaguante', 'listerine', 'absorvente', 'intimus', 'always', 'barbear', 'gillette', 'prestobarba', 'cotonete', 'hidratante', 'lenco umedecido', 'fralda', 'pampers', 'huggies'],
-  ['pet', 'racao', 'cachorro', 'cao', 'caes', 'gato', 'gatos', 'whiskas', 'pedigree', 'areia higienica', 'pipicat'],
+  ['vinho', 'vinhos', 'espumante', 'adega', 'bebida alcoolica', 'destilado', 'moscatel', 'cabernet', 'merlot', 'tannat', 'bordo', 'sangue de boi', 'pergola', 'salton', 'aurora', 'whisky', 'red label', 'campari', 'aperol', 'amarula', 'vodka', 'gin', 'cachaca', 'gelo'],
+  ['tempero', 'temperos', 'condimento', 'condimentos', 'conserva', 'conservas', 'sazon', 'knorr', 'maggi', 'oregano', 'pimenta', 'vinagre', 'mostarda', 'ketchup', 'maionese', 'shoyu', 'barbecue', 'extrato', 'azeitona', 'pepino', 'picles', 'palmito', 'champignon', 'cogumelo', 'seleta', 'creme de cebola', 'sopa'],
+  ['padaria', 'pao', 'paes', 'cacetinho', 'pao frances', 'confeitaria', 'cuca', 'bolo', 'bolinho', 'torrada', 'rap10', 'tortilha', 'bisnaguinha', 'cueca virada', 'grostoli', 'sonho', 'panetone', 'chocotone', 'hot dog', 'cachorro quente', 'xis'],
+  ['matinal', 'matinais', 'cereal', 'cereais', 'aveia', 'granola', 'sucrilhos', 'leite em po', 'ninho', 'geleia', 'chimia', 'nutella', 'mel', 'capsula', 'dolce gusto', 'nespresso', 'cappuccino', 'adocante', 'zero cal', 'stevia', 'chia', 'linhaca', 'quinoa', 'leite vegetal', 'ades'],
+  ['doce', 'doces', 'chocolate', 'chocolates', 'bombom', 'bomboniere', 'bis', 'kitkat', 'baton', 'trento', 'sonho de valsa', 'ouro branco', 'mms', 'bibs', 'pacoca', 'pacoquinha', 'pe de moleque', 'rapadura', 'fini', 'bala', 'chiclete', 'trident', 'halls', 'mentos', 'sorvete', 'acai', 'picole', 'goiabada', 'pessego', 'figo', 'pudim'],
+  ['congelado', 'congelados', 'airfryer', 'freezer', 'prato pronto', 'lasanha', 'batata frita', 'polenta', 'onion rings', 'aneis de cebola', 'escondidinho', 'pao de queijo', 'vegetal', 'vegano', 'polpa'],
+  ['mandioca', 'aipim', 'farofa', 'farinha', 'farinha de mandioca', 'farinha de rosca', 'polvilho', 'tapioca', 'sagu', 'canjica', 'fuba', 'polenta'],
+  ['limpeza', 'faxina', 'lavanderia', 'desinfetante', 'esponja', 'bombril', 'multiuso', 'veja', 'desengordurante', 'cif', 'pato', 'vanish', 'tira manchas', 'alcool', 'vassoura', 'rodo', 'balde', 'luva', 'odorizador', 'glade', 'secar', 'antimofo', 'saco de lixo', 'papel toalha', 'guardanapo', 'aluminio', 'copo descartavel', 'inseticida', 'sbp'],
+  ['higiene', 'perfumaria', 'farmacia', 'farmacinha', 'bebe', 'cuidado pessoal', 'escova de dente', 'fio dental', 'enxaguante', 'listerine', 'absorvente', 'intimus', 'always', 'barbear', 'gillette', 'prestobarba', 'cotonete', 'hidratante', 'lenco umedecido', 'fralda', 'pampers', 'huggies', 'repelente', 'off', 'protetor solar', 'tintura', 'esmalte', 'acetona', 'band aid', 'curativo', 'preservativo', 'camisinha', 'jontex', 'prudence', 'olla', 'hipoglos', 'bepantol'],
+  ['bazar', 'utilidades', 'eletrica', 'descartaveis', 'pilha', 'pilhas', 'duracell', 'lampada', 'led', 'acendedor', 'espeto', 'palito', 'vela', 'fosforo', 'isqueiro'],
+  ['pet', 'racao', 'cachorro', 'cao', 'gato', 'animais', 'caes', 'gatos', 'whiskas', 'pedigree', 'golden', 'areia higienica', 'pipicat', 'bifinho', 'petisco', 'alpiste', 'girassol'],
 ];
 
 function stemWord(word: string): string {
@@ -2931,22 +4185,48 @@ export function matchesProductSearch(item: PromotionItem, rawQuery: string): boo
   const haystack = normalizeSearchText(
     `${item.name} ${item.brand || ''} ${item.description || ''} ${item.unit} ${item.cheapestMarket} ${item.category}`
   );
+  const compactHaystack = haystack.replace(/\s+/g, '');
+  const compactQuery = normQuery.replace(/\s+/g, '');
 
-  // Direct substring match
-  if (haystack.includes(normQuery)) return true;
+  // 1. Direct substring or compact substring match (e.g. "band-aid" === "bandaid", "coca cola" === "cocacola")
+  if (haystack.includes(normQuery) || (compactQuery.length >= 3 && compactHaystack.includes(compactQuery))) {
+    return true;
+  }
+
+  // 2. Check full-phrase equivalence synonyms first (e.g. "pasta de dente" -> "creme dental", "papel filme" -> "filme pvc")
+  for (const eqGroup of EQUIVALENT_SYNONYM_GROUPS) {
+    if (eqGroup.some((phrase) => normQuery.includes(phrase) || phrase === normQuery)) {
+      if (eqGroup.some((syn) => haystack.includes(syn) || compactHaystack.includes(syn.replace(/\s+/g, '')))) {
+        return true;
+      }
+    }
+  }
 
   const tokens = normQuery.split(/\s+/).filter(Boolean);
   if (tokens.length === 0) return true;
 
   return tokens.every((token) => {
     const stemmed = stemWord(token);
-    if (haystack.includes(token) || haystack.includes(stemmed)) {
+    if (
+      haystack.includes(token) ||
+      haystack.includes(stemmed) ||
+      (token.length >= 4 && compactHaystack.includes(token))
+    ) {
       return true;
     }
 
-    // Check if token triggers a synonym group (e.g. "refri", "refris", "bolachinha", "salgadinho")
+    // Check bidirectional equivalence synonyms for this token (e.g. "camisinha" <-> "preservativo", "gilete" <-> "gillette")
+    for (const eqGroup of EQUIVALENT_SYNONYM_GROUPS) {
+      if (eqGroup.includes(token) || eqGroup.includes(stemmed)) {
+        if (eqGroup.some((syn) => haystack.includes(syn) || compactHaystack.includes(syn.replace(/\s+/g, '')))) {
+          return true;
+        }
+      }
+    }
+
+    // Check if token triggers a broad category umbrella group (e.g. "refri", "bolachinha", "salgadinho", "farmacia")
     for (const group of SEARCH_SYNONYM_GROUPS) {
-      const groupTriggers = group.slice(0, 6); // generic category words of the group
+      const groupTriggers = group.slice(0, 6);
       if (groupTriggers.includes(token) || groupTriggers.includes(stemmed)) {
         return group.some((syn) => haystack.includes(syn));
       }
@@ -2990,38 +4270,38 @@ export function generateOrEstimateProduct(query: string, cityName: string = 'Pas
   let brand = 'Marca Selecionada';
   let isEssential = false;
 
-  if (/arroz|feijao|oleo|azeite|farinha|farofa|acucar|sal|cafe|massa|macarrao|molho|leite condensado|creme de leite|polvilho|tapioca|fuba|erva|vinagre|mostarda|ketchup|maionese|shoyu|azeitona|palmito|sazon|tempero|aveia|fermento|maizena|sagu|banha/i.test(norm)) {
+  if (/arroz|feijao|oleo|azeite|farinha|farofa|acucar|sal|cafe|capsula|cappuccino|adocante|massa|macarrao|capeletti|agnoline|nhoque|molho|extrato|leite condensado|creme de leite|leite de coco|polvilho|tapioca|fuba|erva|vinagre|mostarda|ketchup|maionese|shoyu|barbecue|azeitona|palmito|champignon|sazon|tempero|sopa|aveia|chia|linhaca|quinoa|fermento|maizena|maisena|sagu|banha/i.test(norm)) {
     category = 'cesta_basica';
     isEssential = true;
     if (/arroz/i.test(norm)) { unit = '5kg'; basePrice = 25.90; brand = 'Tio João / Camil / Prato Fino'; }
     else if (/feijao/i.test(norm)) { unit = '1kg'; basePrice = 6.49; brand = 'Kicaldo / Caldo Nobre / Camil'; }
     else if (/azeite/i.test(norm)) { unit = '500ml'; basePrice = 36.90; brand = 'Andorinha / Gallo'; isEssential = false; }
     else if (/oleo/i.test(norm)) { unit = '900ml'; basePrice = 6.19; brand = 'Soya / Liza'; }
-    else if (/cafe/i.test(norm)) { unit = '500g'; basePrice = 18.90; brand = 'Melitta / Pilão / Caboclo'; }
-    else if (/massa|macarrao/i.test(norm)) { unit = '500g'; basePrice = 3.69; brand = 'Isabela / Orquídea'; }
+    else if (/cafe|capsula|cappuccino/i.test(norm)) { unit = '500g'; basePrice = 18.90; brand = 'Melitta / Pilão / 3 Corações'; }
+    else if (/massa|macarrao|capeletti|agnoline|nhoque/i.test(norm)) { unit = '500g'; basePrice = 4.99; brand = 'Isabela / Orquídea / Romanha'; }
     else if (/farinha|farofa/i.test(norm)) { unit = '1kg'; basePrice = 4.49; brand = 'Orquídea / Yoki / Dona Benta'; }
-    else if (/acucar/i.test(norm)) { unit = '1kg'; basePrice = 4.49; brand = 'União / Da Barra'; }
-    else if (/molho|shoyu/i.test(norm)) { unit = '300g'; basePrice = 2.99; brand = 'Pomarola / Fugini / Sakura'; }
+    else if (/acucar|adocante/i.test(norm)) { unit = '1kg'; basePrice = 4.49; brand = 'União / Zero-Cal'; }
+    else if (/molho|extrato|shoyu|barbecue/i.test(norm)) { unit = '300g'; basePrice = 3.99; brand = 'Elefante / Heinz / Pomarola'; }
     else { unit = '1kg'; basePrice = 7.50; }
-  } else if (/carne|frango|bife|moida|acem|alcatra|picanha|costela|linguica|salsicha|peixe|peito|coxa|bacon|bisteca|porco|suino|ovo/i.test(norm)) {
+  } else if (/carne|frango|bife|moida|guisado|acem|alcatra|picanha|maminha|chuleta|cupim|musculo|paleta|file|costela|linguica|salsicha|vina|salsichao|morcela|coracao|moela|figado|pernil|lombo|panceta|torresmo|ovelha|cordeiro|peixe|salmao|merluza|camarao|bacalhau|peito|coxa|bacon|bisteca|porco|suino|ovo/i.test(norm)) {
     category = 'carnes_proteinas';
     isEssential = true;
     if (/ovo/i.test(norm)) { unit = '30 un'; basePrice = 17.90; brand = 'Granja Regional'; }
-    else if (/frango|peito|coxa|sassami/i.test(norm)) { unit = 'kg'; basePrice = 15.90; brand = 'Sadia / Seara / Aurora'; }
-    else if (/picanha|fil[eé]|alcatra/i.test(norm)) { unit = 'kg'; basePrice = 54.90; brand = 'Friboi / Marfrig'; isEssential = false; }
-    else if (/costela|linguica|bisteca/i.test(norm)) { unit = 'kg'; basePrice = 23.90; brand = 'Açougue Regional'; }
-    else if (/moida|acem|paleta/i.test(norm)) { unit = 'kg'; basePrice = 25.90; brand = 'Corte Bovina'; }
+    else if (/frango|peito|coxa|sassami|coracao|moela/i.test(norm)) { unit = 'kg'; basePrice = 15.90; brand = 'Sadia / Seara / Aurora'; }
+    else if (/picanha|file|alcatra|maminha|salmao/i.test(norm)) { unit = 'kg'; basePrice = 54.90; brand = 'Friboi / Marfrig / Best Beef'; isEssential = false; }
+    else if (/costela|chuleta|cupim|linguica|salsichao|pernil|lombo|bisteca|panceta/i.test(norm)) { unit = 'kg'; basePrice = 23.90; brand = 'Açougue Regional'; }
+    else if (/moida|guisado|acem|paleta|musculo/i.test(norm)) { unit = 'kg'; basePrice = 24.90; brand = 'Corte Bovino'; }
     else { unit = 'kg'; basePrice = 29.90; }
-  } else if (/leite|queijo|presunto|manteiga|margarina|iogurte|requeijao|nata|ricota|pao de alho/i.test(norm)) {
+  } else if (/leite|queijo|mussarela|mucarela|colonial|ricota|provolone|gorgonzola|presunto|peito de peru|copa|mortadela|salame|manteiga|margarina|iogurte|yakult|toddynho|requeijao|catupiry|nata|chantilly|pastel|pao de alho/i.test(norm)) {
     category = 'laticinios_frios';
     if (/leite\b/i.test(norm)) { unit = '1L'; basePrice = 4.49; brand = 'Elegê / Piracanjuba / Piá'; isEssential = true; }
-    else if (/queijo|mussarela/i.test(norm)) { unit = 'kg'; basePrice = 41.90; brand = 'Santa Clara / Piá'; }
-    else if (/presunto/i.test(norm)) { unit = 'kg'; basePrice = 28.90; brand = 'Sadia / Perdigão'; }
-    else if (/manteiga/i.test(norm)) { unit = '200g'; basePrice = 10.90; brand = 'Batavo / Santa Clara'; }
-    else if (/iogurte/i.test(norm)) { unit = '540g'; basePrice = 7.49; brand = 'Danone / Nestlé'; }
-    else if (/requeijao/i.test(norm)) { unit = '200g'; basePrice = 7.90; brand = 'Vigor / Santa Clara / Piá'; }
-    else { unit = 'un'; basePrice = 9.90; }
-  } else if (/banana|maca|laranja|batata|aipim|mandioca|cebola|tomate|alho|alface|cenoura|abobora|melancia|uva|abacaxi|limao|manga|bergamota|brocolis|couve|repolho|beterraba|pepino|pimentao|abacate/i.test(norm)) {
+    else if (/queijo|mussarela|mucarela|colonial|provolone/i.test(norm)) { unit = 'kg'; basePrice = 41.90; brand = 'Santa Clara / Piá / Da Colônia'; }
+    else if (/presunto|peru|copa/i.test(norm)) { unit = 'kg'; basePrice = 28.90; brand = 'Sadia / Perdigão / Seara'; }
+    else if (/manteiga|nata/i.test(norm)) { unit = '200g'; basePrice = 9.90; brand = 'Santa Clara / Batavo / Piá'; }
+    else if (/iogurte|yakult/i.test(norm)) { unit = '540g'; basePrice = 7.49; brand = 'Danone / Nestlé / Vigor'; }
+    else if (/requeijao|catupiry/i.test(norm)) { unit = '200g'; basePrice = 7.90; brand = 'Vigor / Santa Clara / Piá'; }
+    else { unit = 'un'; basePrice = 8.90; }
+  } else if (/banana|maca|laranja|batata|aipim|mandioca|cebola|tomate|alho|alface|cenoura|abobora|moranga|melancia|uva|abacaxi|limao|manga|bergamota|tangerina|brocolis|couve|repolho|beterraba|pepino|pimentao|abacate|polpa/i.test(norm)) {
     category = 'hortifruti';
     unit = 'kg';
     isEssential = true;
@@ -3030,31 +4310,34 @@ export function generateOrEstimateProduct(query: string, cityName: string = 'Pas
     else if (/batata|cebola|banana|bergamota/i.test(norm)) { unit = 'kg'; basePrice = 4.99; brand = 'Produtores da Região'; }
     else if (/maca|laranja|tomate|aipim/i.test(norm)) { unit = 'kg'; basePrice = 6.99; brand = 'Hortifrúti Selecionado'; }
     else { basePrice = 6.20; }
-  } else if (/sabao|detergente|amaciante|cloro|agua sanitaria|desinfetante|esponja|bombril|multiuso|veja|saco de lixo|papel higienico|papel toalha|guardanapo|shampoo|condicionador|sabonete|creme dental|escova|fio dental|enxaguante|fralda|lenco|absorvente|barbear|gillette|inseticida/i.test(norm)) {
+  } else if (/sabao|detergente|amaciante|cloro|qboa|agua sanitaria|desinfetante|vanish|tira manchas|alcool|esponja|bombril|multiuso|veja|vassoura|rodo|balde|luva|glade|secar|saco de lixo|papel higienico|papel toalha|guardanapo|copo descartavel|shampoo|xampu|condicionador|tintura|creme de pentear|gel|sabonete|creme dental|pasta de dente|escova|fio dental|enxaguante|fralda|lenco|absorvente|barbear|gillette|gilete|repelente|protetor solar|acetona|esmalte|band aid|bandaid|curativo|preservativo|camisinha|jontex|prudence|olla|lubrificante|hipoglos|bepantol|inseticida/i.test(norm)) {
     category = 'limpeza_higiene';
     if (/detergente/i.test(norm)) { unit = '500ml'; basePrice = 2.19; brand = 'Ypê / Limpol'; isEssential = true; }
-    else if (/sabao/i.test(norm)) { unit = '1kg'; basePrice = 12.90; brand = 'Omo / Brilhante'; isEssential = true; }
+    else if (/camisinha|preservativo|jontex|prudence|olla/i.test(norm)) { unit = '3 un'; basePrice = 6.49; brand = 'Jontex / Prudence / Olla'; }
+    else if (/sabao|vanish/i.test(norm)) { unit = '1kg'; basePrice = 12.90; brand = 'Omo / Brilhante / Vanish'; isEssential = true; }
     else if (/amaciante/i.test(norm)) { unit = '2L'; basePrice = 14.90; brand = 'Downy / Comfort'; }
     else if (/papel higienico/i.test(norm)) { unit = '12 un'; basePrice = 16.90; brand = 'Neve / Personal'; isEssential = true; }
-    else if (/fralda/i.test(norm)) { unit = 'pct'; basePrice = 46.90; brand = 'Pampers / Huggies'; }
+    else if (/fralda/i.test(norm)) { unit = 'pct'; basePrice = 46.90; brand = 'Pampers / Huggies / Tena'; }
     else if (/sabonete/i.test(norm)) { unit = '90g'; basePrice = 2.49; brand = 'Dove / Palmolive'; isEssential = true; }
-    else if (/shampoo/i.test(norm)) { unit = '350ml'; basePrice = 10.90; brand = 'Seda / Pantene'; }
-    else if (/creme dental/i.test(norm)) { unit = '90g'; basePrice = 3.99; brand = 'Colgate / Sorriso'; isEssential = true; }
+    else if (/shampoo|xampu|tintura|repelente|protetor/i.test(norm)) { unit = 'un'; basePrice = 13.90; brand = 'Seda / Pantene / Off!'; }
+    else if (/creme dental|pasta de dente/i.test(norm)) { unit = '90g'; basePrice = 3.99; brand = 'Colgate / Sorriso'; isEssential = true; }
     else { unit = 'un'; basePrice = 7.90; }
-  } else if (/refri|refrigerante|coca|guarana|pepsi|fanta|sprite|cerveja|suco|agua mineral|vinho|espumante|energetico|baly|gatorade|cha|vodka|gin|cachaca/i.test(norm)) {
+  } else if (/refri|refrigerante|coca|guarana|pepsi|fanta|sprite|cerveja|chopp|suco|agua mineral|vinho|espumante|energetico|baly|gatorade|cha|vodka|gin|cachaca|whisky|campari|aperol|amarula|gelo/i.test(norm)) {
     category = 'outros';
-    if (/cerveja/i.test(norm)) { unit = '350ml'; basePrice = 3.79; brand = 'Amstel / Heineken / Brahma'; }
+    if (/cerveja|chopp/i.test(norm)) { unit = '350ml'; basePrice = 3.99; brand = 'Amstel / Heineken / Brahma / Corona'; }
     else if (/refri|refrigerante|coca|guarana|pepsi|fanta|sprite|baly/i.test(norm)) { unit = '2L'; basePrice = 8.90; brand = 'Coca-Cola / Guaraná / Fruki / Baly'; }
     else if (/suco/i.test(norm)) { unit = '1L'; basePrice = 7.90; brand = 'Del Valle / Aurora'; }
-    else if (/vinho|espumante/i.test(norm)) { unit = '750ml'; basePrice = 22.90; brand = 'Salton / Aurora / Garibaldi'; }
+    else if (/vinho|espumante|campari|aperol|amarula/i.test(norm)) { unit = '750ml'; basePrice = 24.90; brand = 'Salton / Aurora / Campari'; }
+    else if (/whisky/i.test(norm)) { unit = '1L'; basePrice = 79.90; brand = 'Red Label / Ballantine’s'; }
     else { unit = 'un'; basePrice = 6.90; }
-  } else if (/pizza|lasanha|chocolate|biscoito|bolacha|bolachinha|salgadinho|doritos|ruffles|cheetos|fandangos|doce|sorvete|bala|cuca|bolo|geleia|nutella|racao|carvao/i.test(norm)) {
+  } else if (/pizza|lasanha|escondidinho|coxinha|kibe|polenta|chocolate|bis|kitkat|bombom|mms|bibs|pacoca|fini|bala|trident|halls|biscoito|bolacha|bolachinha|salgadinho|doritos|ruffles|cheetos|fandangos|doce|goiabada|sorvete|acai|picole|cuca|grostoli|cueca virada|panetone|chocotone|bolo|geleia|nutella|racao|pilha|lampada|carvao/i.test(norm)) {
     category = 'outros';
-    if (/pizza/i.test(norm)) { unit = '460g'; basePrice = 15.90; brand = 'Sadia / Seara / Perdigão'; }
-    else if (/chocolate/i.test(norm)) { unit = '90g'; basePrice = 5.99; brand = 'Nestlé / Lacta / Garoto'; }
+    if (/pizza|escondidinho|coxinha/i.test(norm)) { unit = '460g'; basePrice = 15.90; brand = 'Sadia / Seara / Perdigão'; }
+    else if (/chocolate|bis|kitkat|mms|bibs/i.test(norm)) { unit = '100g'; basePrice = 5.49; brand = 'Nestlé / Lacta / Garoto / Neugebauer'; }
     else if (/biscoito|bolacha|bolachinha/i.test(norm)) { unit = '130g'; basePrice = 3.29; brand = 'Oreo / Passatempo / Trakinas / Zezé'; }
     else if (/salgadinho|doritos|ruffles|cheetos|fandangos/i.test(norm)) { unit = '140g'; basePrice = 9.49; brand = 'Doritos / Ruffles / Cheetos / Elma Chips'; }
-    else { unit = 'un'; basePrice = 6.90; }
+    else if (/sorvete|acai|picole/i.test(norm)) { unit = '1.5L'; basePrice = 19.90; brand = 'Kibon / Nestlé / Sorvelândia'; }
+    else { unit = 'un'; basePrice = 7.90; }
   }
 
   const formattedName = query.trim().replace(/(^\w|\s\w)/g, (m) => m.toUpperCase());
@@ -3072,3 +4355,5 @@ export function generateOrEstimateProduct(query: string, cityName: string = 'Pas
     }),
   });
 }
+
+

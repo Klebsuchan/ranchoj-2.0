@@ -821,10 +821,14 @@ app.get("/api/promotions", async (req, res) => {
   const cacheKey = `${city.toLowerCase()}__${neighborhood.toLowerCase()}`;
   const cached = cityPromotionsCache.get(cacheKey);
 
-  // Invalidate cache if forceRefresh or if cached data lacks Monster or Omo
-  const cacheValid = !forceRefresh && cached && now - cached.timestamp < CACHE_TTL_MS && 
+  // Invalidate cache if forceRefresh or if cached data lacks latest catalog items
+  const cacheValid =
+    !forceRefresh &&
+    cached &&
+    now - cached.timestamp < CACHE_TTL_MS &&
     cached.data?.items?.some((it: any) => /monster/i.test(it.name)) &&
-    cached.data?.items?.some((it: any) => /omo/i.test(it.name));
+    cached.data?.items?.some((it: any) => /omo/i.test(it.name)) &&
+    cached.data?.items?.some((it: any) => it.id === "pf-preservativo-camisinha-jontex-prudence-3un");
 
   if (cacheValid) {
     return res.json({ ...cached.data, fromCache: true });

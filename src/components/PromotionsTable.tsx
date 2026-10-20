@@ -211,12 +211,13 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
 
   // Filtragem principal com busca inteligente por sinônimos e múltiplos termos
   const filteredItems = useMemo(() => {
-    const hasSearch = Boolean(searchQuery.trim());
+    const trimmedSearch = searchQuery.trim();
+    const hasSearch = Boolean(trimmedSearch);
 
-    const runFilter = (ignoreCategory: boolean) =>
+    const runFilter = (ignoreRestrictiveFilters: boolean) =>
       items
         .filter((item) => {
-          if (!ignoreCategory) {
+          if (!ignoreRestrictiveFilters) {
             if (selectedCategory === 'hortifruti' && item.category !== 'hortifruti') return false;
             if (selectedCategory === 'carnes_proteinas' && item.category !== 'carnes_proteinas')
               return false;
@@ -226,11 +227,11 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
             ) {
               return false;
             }
+            if (onlyEssentials && !item.isEssential) return false;
+            if (priceUnder10 && item.lowestPrice > 10) return false;
+            if (onlyPromos && !item.prices.some((p) => p.isPromo)) return false;
+            if (onlyFavorites && !priceAlerts[item.id]) return false;
           }
-          if (onlyEssentials && !item.isEssential) return false;
-          if (priceUnder10 && item.lowestPrice > 10) return false;
-          if (onlyPromos && !item.prices.some((p) => p.isPromo)) return false;
-          if (onlyFavorites && !priceAlerts[item.id]) return false;
           if (
             selectedSpecificMarket !== 'all' &&
             !item.prices.some(
@@ -251,8 +252,8 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
           if (hasSearch) {
             const extraCategoryText = categoryLabels[item.category] || '';
             const matched =
-              matchesProductSearch(item, searchQuery) ||
-              normalizeSearchText(extraCategoryText).includes(normalizeSearchText(searchQuery));
+              matchesProductSearch(item, trimmedSearch) ||
+              normalizeSearchText(extraCategoryText).includes(normalizeSearchText(trimmedSearch));
             if (!matched) return false;
           }
           return true;
@@ -260,8 +261,13 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
         .sort((a, b) => a.lowestPrice - b.lowestPrice);
 
     const primaryResults = runFilter(false);
-    if (hasSearch && primaryResults.length === 0 && selectedCategory !== 'all') {
-      return runFilter(true);
+    if (hasSearch && primaryResults.length === 0) {
+      const globalResults = runFilter(true);
+      if (globalResults.length > 0) {
+        return globalResults;
+      }
+      // Garante que qualquer produto pesquisado apareça na hora com comparativo de todos os mercados
+      return [generateOrEstimateProduct(trimmedSearch, userProfile?.city || 'Passo Fundo')];
     }
     return primaryResults;
   }, [
@@ -276,6 +282,7 @@ export const PromotionsTable: React.FC<PromotionsTableProps> = ({
     onlyNearby,
     nearbyMarketNames,
     priceAlerts,
+    userProfile?.city,
   ]);
 
   // Destaques Relâmpago do Dia (Monster R$ 7,99, Sabonete Stock Center R$ 2,19, OMO, etc.)
